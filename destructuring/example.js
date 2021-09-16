@@ -1,8 +1,6 @@
 let person = {
   firstName: "Christie",
   lastName: "Beauchamp",
-  occupation: "Busy",
-  dreams: "Vivid",
   height: "180cm",
 };
 
