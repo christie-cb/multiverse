@@ -5,6 +5,7 @@ test("books should have an author", () => {
     const testAuthor = new Author({ name: "name", yearOfBirth: "2021" });
     const book = new Book({ title: "book", author: testAuthor });
     expect(book.author).toBe(testAuthor);
+    expect(book.author).toBeInstanceOf(Author);
 });
 
 test("books should have a title", () => {
