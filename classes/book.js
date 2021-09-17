@@ -9,9 +9,4 @@ class Book {
     }
 }
 
-const hamlet = new Book({title: "Hamlet", author: "Shakey", latestEdition: 1});
-console.log(hamlet);
-hamlet.newEdition();
-console.log(hamlet);
-
 module.exports = Book;
