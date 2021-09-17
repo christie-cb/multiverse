@@ -1,0 +1,15 @@
+{
+  "name": "classes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "author.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.2.0"
+  }
+}
