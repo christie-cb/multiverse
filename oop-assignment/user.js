@@ -7,13 +7,13 @@ class User {
         this.userId = userId;
     }
 
-    createPost(title, text) {
+    createPost({ title, text, pageId }) {
         return new Post({
             title: title,
             text: text,
             date: Date(Date.now()),
             author: this,
-            pageId: uuidv4(),
+            pageId: pageId,
             postId: uuidv4(),
         });
     }
