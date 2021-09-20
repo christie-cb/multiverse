@@ -15,4 +15,5 @@ test("User includes username and user id", () => {
     const user = new User({ username: username, userId: testId });
     const post = user.createPost();
     expect(post).toBeInstanceOf(Post);
+    expect(post.author).toBe(user);
 });
