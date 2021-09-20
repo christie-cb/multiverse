@@ -12,7 +12,7 @@ test("poll inherits from post", () => {
         pageId: "_page",
     };
     const options = new Options({ A: "scone", B: "definitely scone" });
-    const post = new Poll({
+    const poll = new Poll({
         question: "Scone or scone?",
         options: options,
         title: params.title,
