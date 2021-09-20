@@ -7,6 +7,6 @@ test("Comment has date, author, text", () => {
     const text = "wow";
     const comment = new Comment({ date: date, author: author, text: text });
     expect(comment.date).toBe(date);
-    expect(comment.author).toBe(user);
+    expect(comment.author).toBe(author);
     expect(comment.text).toBe(text);
 });
