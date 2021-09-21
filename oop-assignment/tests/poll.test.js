@@ -16,6 +16,7 @@ test("poll inherits from post", () => {
     });
     expect(poll.author).toBe(author);
     expect(poll).toBeInstanceOf(Post);
+    expect(poll.date).toBeInstanceOf(Date);
 });
 
 test("poll includes options", () => {
