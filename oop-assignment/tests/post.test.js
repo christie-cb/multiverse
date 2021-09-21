@@ -1,17 +1,7 @@
 const Post = require("../post");
 const User = require("../user");
 const Comment = require("../comment");
-
-function getTestPost() {
-    return new Post({
-        title: "title",
-        author: new User({ username: "user", userId: "_user" }),
-        date: Date(Date.now()),
-        text: "hello world",
-        postId: "_post",
-        pageId: "_page",
-    });
-}
+const getTestPost = require("./utils");
 
 test("post has title, author, date, text", () => {
     const params = {
@@ -44,7 +34,10 @@ test("posts can be deleted by their author", () => {
     expect(post).toBe(undefined);
     const newPost = getTestPost();
     // set current user to be unauthorised to delete
-    const unauthorisedUser = User({ username: "unauth", userId: "_other_user" });
+    const unauthorisedUser = User({
+        username: "unauth",
+        userId: "_other_user",
+    });
     newPost.remove({ byUser: unauthorisedUser });
     // newPost should not be undefined
     expect(newPost).not.toBe(undefined);
@@ -63,4 +56,3 @@ test("can add comments to post", () => {
     expect(comment).toBeInstanceOf(Comment);
     expect(comment.postId).toBe(post.postId);
 });
-
