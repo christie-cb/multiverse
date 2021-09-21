@@ -9,16 +9,11 @@ class Post {
         this.text = text;
         this.pageId = pageId;
         this.postId = postId;
+        this.comments = [];
     }
 
-    addComment({ text, author }) {
-        return new Comment({
-            text: text,
-            date: Date(Date.now()),
-            author: author,
-            postId: this.postId,
-            commentId: uuidv4(),
-        });
+    addComment(comment) {
+        this.comments.push(comment);
     }
 }
 
