@@ -1,7 +1,7 @@
 class Post {
-    constructor({ title, date, author, text, pageId, postId }) {
+    constructor({ title, author, text, pageId, postId }) {
         this.title = title;
-        this.date = date;
+        this.date = new Date(Date.now());
         this.author = author;
         this.text = text;
         this.pageId = pageId;
