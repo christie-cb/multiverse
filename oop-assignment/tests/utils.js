@@ -6,8 +6,6 @@ function getTestPost() {
         title: "title",
         author: new User({ username: "user", userId: "_user" }),
         text: "hello world",
-        postId: "_post",
-        pageId: "_page",
     });
 }
 
