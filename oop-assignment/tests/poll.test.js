@@ -11,8 +11,6 @@ test("poll inherits from post", () => {
         title: "title",
         author: author,
         text: "hello world",
-        postId: "_post",
-        pageId: "_page",
     });
     expect(poll.author).toBe(author);
     expect(poll).toBeInstanceOf(Post);
