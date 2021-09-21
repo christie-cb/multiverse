@@ -31,12 +31,7 @@ test("post generates its own date", () => {
 test("post can add comment", () => {
     const post = getTestPost();
     expect(post.comments.length).toBe(0);
-    const comment = new Comment({
-        text: "first",
-        title: "",
-        date: Date(Date.now()),
-        author: post.author,
-    });
+    const comment = new Comment({ text: "first", author: post.author });
     post.addComment(comment);
     expect(post.comments.length).toBe(1);
     expect(post.comments[0].text).toBe(comment.text);
