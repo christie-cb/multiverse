@@ -1,9 +1,8 @@
 const Post = require("./post");
 
 class Poll extends Post {
-    constructor({ question, options, title, author, text }) {
+    constructor({ options, title, author, text }) {
         super({ title, author, text });
-        this.question = question;
         this.options = options;
         this.votes = { A: 0, B: 0, C: 0, D: 0 };
     }
