@@ -1,6 +1,3 @@
-const { v4: uuidv4 } = require("uuid");
-const Comment = require("./comment");
-
 class Post {
     constructor({ title, date, author, text, pageId, postId }) {
         this.title = title;
