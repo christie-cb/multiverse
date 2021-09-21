@@ -3,26 +3,18 @@ const Post = require("../post");
 const User = require("../user");
 
 test("poll inherits from post", () => {
-    const params = {
+    const author = new User({ username: "user", userId: "_user" });
+    const options = new Options({ A: "scone", B: "definitely scone" });
+    const poll = new Poll({
+        question: "scone or scone",
+        options: options,
         title: "title",
-        author: new User({ username: "user", userId: "_user" }),
-        date: Date(Date.now()),
+        author: author,
         text: "hello world",
         postId: "_post",
         pageId: "_page",
-    };
-    const options = new Options({ A: "scone", B: "definitely scone" });
-    const poll = new Poll({
-        question: "Scone or scone?",
-        options: options,
-        title: params.title,
-        author: params.author,
-        date: params.date,
-        text: params.text,
-        postId: params.postId,
-        pageId: params.pageId,
     });
-    expect(poll.author).toBe(params.author);
+    expect(poll.author).toBe(author);
     expect(poll).toBeInstanceOf(Post);
 });
 
