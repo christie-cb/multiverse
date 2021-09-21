@@ -25,6 +25,20 @@ test("post has title, author, date, text", () => {
     });
 });
 
+test("post can add comment", () => {
+    const post = getTestPost();
+    expect(post.comments.length).toBe(0);
+    const comment = Comment();
+    post.addComment(comment);
+    expect(post.comments.length).toBe(1);
+    expect(post.comment[0]).toBe(comment);
+    
+    const nextComment = Comment({ date: Date(Date.now()), author: null, text: "2nd comment" });
+    post.addComment(nextComment);
+    expect(post.comments.length).toBe(2);
+    expect(post.comment[1]).toBe(nextComment);
+})
+
 test("posts can be deleted by their author", () => {
     const post = getTestPost();
     // set current user to be post.author
@@ -41,18 +55,4 @@ test("posts can be deleted by their author", () => {
     newPost.remove({ byUser: unauthorisedUser });
     // newPost should not be undefined
     expect(newPost).not.toBe(undefined);
-});
-
-test("can add comments to post", () => {
-    const post = new Post({
-        title: "title",
-        author: new User({ username: "user", userId: "_user" }),
-        date: Date(Date.now()),
-        text: "hello world",
-        postId: "_post",
-        pageId: "_page",
-    });
-    const comment = post.addComment("fantastic");
-    expect(comment).toBeInstanceOf(Comment);
-    expect(comment.postId).toBe(post.postId);
 });
