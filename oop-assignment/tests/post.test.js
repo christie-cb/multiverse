@@ -7,7 +7,6 @@ test("post has title, author, date, text", () => {
     const params = {
         title: "title",
         author: new User({ username: "user", userId: "_user" }),
-        date: Date(Date.now()),
         text: "hello world",
         postId: "_post",
         pageId: "_page",
@@ -15,7 +14,6 @@ test("post has title, author, date, text", () => {
     const post = new Post({
         title: params.title,
         author: params.author,
-        date: params.date,
         text: params.text,
         postId: params.postId,
         pageId: params.pageId,
@@ -25,19 +23,37 @@ test("post has title, author, date, text", () => {
     });
 });
 
+test("post generates its own date", () => {
+    const post = new Post({
+        title: "title",
+        author: new User({ username: "user", userId: "_user" }),
+        text: "hello world",
+        postId: "_post",
+        pageId: "_page",
+    });
+    expect(post.date).toBeInstanceOf(Date);
+});
+
 test("post can add comment", () => {
     const post = getTestPost();
     expect(post.comments.length).toBe(0);
-    const comment = new Comment({ text: "first", title: "", date: Date(Date.now()), author: post.author, postId: "", commentId: "" })
+    const comment = new Comment({
+        text: "first",
+        title: "",
+        date: Date(Date.now()),
+        author: post.author,
+        postId: "",
+        commentId: "",
+    });
     post.addComment(comment);
     expect(post.comments.length).toBe(1);
     expect(post.comments[0].text).toBe(comment.text);
-    
+
     const nextComment = new Comment({ text: "second", author: post.author });
     post.addComment(nextComment);
     expect(post.comments.length).toBe(2);
     expect(post.comments[1].text).toBe(nextComment.text);
-})
+});
 
 test("posts can be deleted by their author", () => {
     const post = getTestPost();
