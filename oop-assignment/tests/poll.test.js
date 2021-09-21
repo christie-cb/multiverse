@@ -6,9 +6,8 @@ test("poll inherits from post", () => {
     const author = new User({ username: "user", userId: "_user" });
     const options = new Options({ A: "scone", B: "definitely scone" });
     const poll = new Poll({
-        question: "scone or scone",
         options: options,
-        title: "title",
+        title: "scone or scone",
         author: author,
         text: "hello world",
     });
@@ -19,13 +18,13 @@ test("poll inherits from post", () => {
 
 test("poll includes options", () => {
     const options = new Options({ A: "scone", B: "definitely scone" });
-    const poll = new Poll({ question: "Scone or scone?", options: options });
+    const poll = new Poll({ title: "Scone or scone?", options: options });
     expect(poll.options).toBe(options);
 });
 
 test("can vote on poll", () => {
     const options = new Options({ A: "scone", B: "definitely scone" });
-    const poll = new Poll({ question: "Scone or scone?", options: options });
+    const poll = new Poll({ title: "Scone or scone?", options: options });
     expect(poll.votes.A).toBe(0);
     expect(poll.votes.B).toBe(0);
     poll.vote("A");
