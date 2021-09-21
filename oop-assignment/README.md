@@ -5,6 +5,10 @@ On first read of the assignment this was the diagram I came up with. On second t
 
 ![UML](/../images/oop-assignment/UML.png?raw=true)
 
-After some more thought the end result looked more like this. ForumPage containts a Post array but doesn't place any restrictions on what properties the post needs to have.
+In the end, the result looked more like the diagram below. ForumPage containts a Post array but doesn't place any restrictions on what properties the post needs to have. Still a bit unsure about this so any feedback would be hugely appreciated! Thank you! 
+
+### Improvements to make
+- Post, Poll and Comment to inherit from a generic class with only text, date and author.
+- Putting more thought into Poll and Options.
 
 ![UML](/../images/oop-assignment/UML_updated.png?raw=true)
