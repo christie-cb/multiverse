@@ -1,5 +1,4 @@
 const User = require("../user");
-const Post = require("../post");
 
 test("User includes username and user id", () => {
     const username = "username";
