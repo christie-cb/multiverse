@@ -28,15 +28,15 @@ test("post has title, author, date, text", () => {
 test("post can add comment", () => {
     const post = getTestPost();
     expect(post.comments.length).toBe(0);
-    const comment = Comment();
+    const comment = new Comment({ text: "first", title: "", date: Date(Date.now()), author: post.author, postId: "", commentId: "" })
     post.addComment(comment);
     expect(post.comments.length).toBe(1);
-    expect(post.comment[0]).toBe(comment);
+    expect(post.comments[0].text).toBe(comment.text);
     
-    const nextComment = Comment({ date: Date(Date.now()), author: null, text: "2nd comment" });
+    const nextComment = new Comment({ text: "second", author: post.author });
     post.addComment(nextComment);
     expect(post.comments.length).toBe(2);
-    expect(post.comment[1]).toBe(nextComment);
+    expect(post.comments[1].text).toBe(nextComment.text);
 })
 
 test("posts can be deleted by their author", () => {
