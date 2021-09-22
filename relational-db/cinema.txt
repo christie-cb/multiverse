@@ -20,3 +20,26 @@ movies
 | 1  | Titanic    | 110      |
 | 2  | Star Wars  | 125      |
 | 3  | Snow White | 119      |
+
+screens
+| id | cinema_id | screen_no | seat_count |
+|----|-----------|-----------|------------|
+| 1  | 1         | 1         | 100        |
+| 2  | 1         | 2         | 98         | 
+| 3  | 1         | 3         | 180        |
+| 4  | 1         | 4         | 150        |
+| 5  | 2         | 1         | 90         |
+| 6  | 2         | 2         | 120        |
+| 7  | 2         | 3         | 220        |
+| 8  | 3         | 1         | 250        |
+
+bookings
+| id | email               | seat_no | screening_id |
+|----|---------------------|---------|--------------|
+| 1  | customer1@gmail.com | 49      | 1            |
+| 2  | customer2@gmail.com | 50      | 1            | 
+| 3  | customer3@gmail.com | 25      | 4            |
+| 4  | customer4@gmail.com | 64      | 2            |
+| 5  | customer5@gmail.com | 65      | 2            |
+| 6  | customer6@gmail.com | 70      | 3            |
+
