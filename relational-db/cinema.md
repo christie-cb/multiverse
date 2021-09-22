@@ -7,7 +7,7 @@ NB: Initially I did the same thing as Katie and left duplicate data after doing 
 | 2  | Curzon St.    |
 | 3  | Grafton St.   |
 
-- Primary key: id
+- Primary key: cinema_id
 - No foreign keys
 
 # screenings
@@ -18,7 +18,7 @@ NB: Initially I did the same thing as Katie and left duplicate data after doing 
 | 3  | 3        | 19:00      | 2         |
 | 4  | 2        | 17:00      | 5         |
 
-- Primary key: id
+- Primary key: screening_id
 - Foreign keys: movie_id, ~~cinema_id~~, screen_id
 
 # movies
@@ -28,7 +28,7 @@ NB: Initially I did the same thing as Katie and left duplicate data after doing 
 | 2  | Star Wars  | 125      |
 | 3  | Snow White | 119      |
 
-- Primary key: id
+- Primary key: movie_id
 - Foreign keys: none of them! 
 
 # screens
@@ -43,7 +43,7 @@ NB: Initially I did the same thing as Katie and left duplicate data after doing 
 | 7         | 2         | 220        |
 | 8         | 3         | 250        |
 
-- Primary key: id
+- Primary key: screen_id
 - Foreign keys: cinema_id 
 
 # bookings
@@ -56,6 +56,6 @@ NB: Initially I did the same thing as Katie and left duplicate data after doing 
 | 5          | customer5@gmail.com | 65      | 2            |
 | 6          | customer6@gmail.com | 70      | 3            |
 
-- Primary key: id
+- Primary key: booking_id
 - Foreign keys: screening_id 
 
