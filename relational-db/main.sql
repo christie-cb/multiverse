@@ -38,7 +38,7 @@ VALUES ("Subway", "https://bit.ly/sw");
 INSERT INTO companies (name, logoUrl) 
 VALUES ("ICCO", "https://bit.ly/sw");
 
--- ocations
+-- locations
 INSERT INTO locations (companyID, name, capacity, manager) 
 VALUES (1, "Penzance", 100, "Richard");
 
