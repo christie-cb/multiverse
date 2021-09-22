@@ -1,4 +1,4 @@
-cinemas
+# cinemas
 | id | location      | screen_count | 
 |----|---------------|--------------|
 | 1  | Leicester Sq. | 9            |
@@ -8,7 +8,7 @@ cinemas
 - Primary key: id
 - No foreign keys
 
-screenings
+# screenings
 | id | movie_id | cinema_id | start_time | screen_no |
 |----|----------|-----------|------------|-----------|
 | 1  | 1        | 1         | 16:00      | 4         |
@@ -19,7 +19,7 @@ screenings
 - Primary key: id
 - Foreign keys: movie_id, cinema_id
 
-movies
+# movies
 | id | title      | duration |
 |----|------------|----------|
 | 1  | Titanic    | 110      |
@@ -29,7 +29,7 @@ movies
 - Primary key: id
 - Foreign keys: none of them! 
 
-screens
+# screens
 | id | cinema_id | screen_no | seat_count |
 |----|-----------|-----------|------------|
 | 1  | 1         | 1         | 100        |
@@ -44,7 +44,7 @@ screens
 - Primary key: id
 - Foreign keys: cinema_id 
 
-bookings
+# bookings
 | id | email               | seat_no | screening_id |
 |----|---------------------|---------|--------------|
 | 1  | customer1@gmail.com | 49      | 1            |
