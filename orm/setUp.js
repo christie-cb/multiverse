@@ -10,8 +10,8 @@ async function setupDb() {
     Movie.hasMany(Screening);
 
     // One-to-One relationship between Screenings and Cinemas.
-    Screening.belongsTo(Cinema, { foreignKey: "cinema_id" });
-    Screening.belongsTo(Movie, { foreignKey: "movie_id" });
+    Screening.belongsTo(Cinema); //, { foreignKey: "cinema_id" });
+    Screening.belongsTo(Movie); //, { foreignKey: "movie_id" });
 
     await db.sync({ force: true, logging: console.log }); // Resets/deletes the db every time.
 }
