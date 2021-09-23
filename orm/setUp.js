@@ -1,6 +1,6 @@
-const Cinema = require("./cinema");
-const Movie = require("./movie");
-const Screening = require("./screening");
+const Cinema = require("./models/cinema");
+const Movie = require("./models/movie");
+const Screening = require("./models/screening");
 const db = require("./db");
 
 async function setupDb() {
