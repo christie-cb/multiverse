@@ -13,57 +13,23 @@ async function sandbox() {
         location: "Curzon Street",
         screenCount: 10,
     });
-    const snowWhite = Movie.create({
+    const snowWhite = await Movie.create({
         title: "Snow White",
         duration: 112,
     });
-    const starWars = Movie.create({
+    const starWars = await Movie.create({
         title: "Star Wars",
         duration: 130,
     });
-
-    const screening1 = await Screening.create(
-        {
-            startTime: new Date(2021, 11, 01, 19, 45),
-            screenNumber: 2,
-            movie: {
-                title: "Prince of Egypt",
-                duration: 90,
-            },
-            cinema: {
-                location: "Curzon Street",
-                screenCount: 10,
-            },
-        },
-        { include: [Movie, Cinema] }
-    );
-    const screening2 = await Screening.create(
-        {
-            startTime: new Date(2021, 11, 01, 19, 45),
-            screenNumber: 2,
-            movie: {
-                title: "The Nun",
-                duration: 90,
-            },
-            cinema: {
-                location: "Leicester Square",
-                screenCount: 10,
-            },
-        },
-        { include: [Movie, Cinema] }
-    );
-    const screening3 = await Screening.create(
-        {
-            startTime: new Date(2021, 11, 01, 19, 45),
-            screenNumber: 2,
-            movie: {
-                title: "Spirit Stallion of the Simarron",
-                duration: 90,
-            },
-            cinema: curzon,
-        },
-        { include: [Movie, Cinema] }
-    );
-    Screening.findAll({ logging: console.log });
+    const screening1 = await snowWhite.createScreening({
+        startTime: new Date(2021, 11, 01, 19, 45),
+        screenNumber: 2,
+    });
+//    const screening1 = await Screening.createScreening({
+//        title: "Star Wars",
+//        duration: 130,
+//    });
+    starWars.addScreening(screening1);
+    curzon.addScreening(screening1);
 }
 sandbox();
