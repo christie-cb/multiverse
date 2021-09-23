@@ -22,7 +22,7 @@ async function sandbox() {
         duration: 130,
     });
 
-    const screening1 = Screening.create(
+    const screening1 = await Screening.create(
         {
             startTime: new Date(2021, 11, 01, 19, 45),
             screenNumber: 2,
@@ -37,7 +37,7 @@ async function sandbox() {
         },
         { include: [Movie, Cinema] }
     );
-    const screening2 = Screening.create(
+    const screening2 = await Screening.create(
         {
             startTime: new Date(2021, 11, 01, 19, 45),
             screenNumber: 2,
@@ -52,7 +52,7 @@ async function sandbox() {
         },
         { include: [Movie, Cinema] }
     );
-    const screening3 = Screening.create(
+    const screening3 = await Screening.create(
         {
             startTime: new Date(2021, 11, 01, 19, 45),
             screenNumber: 2,
@@ -60,10 +60,7 @@ async function sandbox() {
                 title: "Spirit Stallion of the Simarron",
                 duration: 90,
             },
-            cinema: {
-                location: "Arts Picturehouse",
-                screenCount: 10,
-            },
+            cinema: curzon,
         },
         { include: [Movie, Cinema] }
     );
