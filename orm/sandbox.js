@@ -13,11 +13,7 @@ async function sandbox() {
         location: "Curzon Street",
         screenCount: 10,
     });
-    const snowWhite = await Movie.create({
-        title: "Snow White",
-        duration: 112,
-    });
-    const starWars = await Movie.create({
+   const starWars = await Movie.create({
         title: "Star Wars",
         duration: 130,
     });
@@ -25,10 +21,7 @@ async function sandbox() {
         startTime: new Date(2021, 11, 01, 19, 45),
         screenNumber: 2,
     });
-//    const screening1 = await Screening.createScreening({
-//        title: "Star Wars",
-//        duration: 130,
-//    });
+    
     starWars.addScreening(screening1);
     curzon.addScreening(screening1);
 }
