@@ -5,8 +5,6 @@ class Screening extends Model {}
 
 Screening.init(
     {
-        movieId: DataTypes.INTEGER,
-        cinemaId: DataTypes.INTEGER,
         startTime: DataTypes.DATE,
         screenNumber: DataTypes.INTEGER,
     },
