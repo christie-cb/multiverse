@@ -14,15 +14,19 @@ function sudoku(puzzleJson) {
     // Now, while loop through their solutions. We cross check the rows & columns. We can use, like a count of solutions to see whether it's filled.
     const allColumns = getEmptyAllColumns();
     const enteredColumns = Object.keys(puzzleJson);
-    const enteredRows = [];
     enteredColumns.forEach((colKey) => {
         console.log(colKey);
         const entries = Object.values(puzzleJson[colKey]);
         allColumns[colKey].push(entries);
-        enteredRows.push(puzzleJson[colKey]);
     });
-    console.log(enteredRows);
-    return allColumns;
+    const rows = Object.values(puzzleJson);
+    rows.forEach((obj) => {
+        const rowKeys = Object.keys(obj);
+        rowKeys.forEach((key) => {
+            allRows[key].push(obj[key]);
+        })
+    });
+    console.log(allRows);
 }
 
 function getEmptyAllRows() {
