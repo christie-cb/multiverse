@@ -28,10 +28,9 @@ function sudoku(puzzleJson) {
         );
         unfilledRows.forEach((rowSquare) => {
             // e.g. rowSquare = 1
-            console.log(numsNotInColumn);
-            const numsNotInRow = difference(range(1,9), allRows[rowSquare]);
-            console.log(union(numsNotInRow, numsNotInColumn));
+            const numsNotInRow = difference(range(1, 9), allRows[rowSquare]);
             const curr = puzzleJson[colKey][rowSquare];
+            console.log(numsNotInRow);
         });
     });
 }
@@ -74,4 +73,9 @@ sudoku({
     B: { 2: 8, 3: 9, 4: 2, 6: 5, 8: 4 },
     C: { 5: 4, 7: 9, 9: 3 },
     D: { 1: 2, 5: 1, 6: 6, 8: 3 },
+    E: { 1: 6, 2: 7, 8: 5, 9: 1 },
+    F: { 3: 4, 6: 2, 7: 3, 9: 8 },
+    G: { 1: 7, 3: 5, 6: 9 },
+    H: { 2: 9, 4: 4, 6: 2, 7: 7, 8: 3 },
+    I: { 1: 1, 6: 8, 7: 4, 8: 6 },
 });
