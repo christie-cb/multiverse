@@ -1,17 +1,8 @@
-//const express = require("express");
-//
-//const app = express();
-//app.use(express.json());
-
 function sudoku(puzzleJson) {
     // Example uncompleted Sudoku:
     // {column: {row: value}}
     // {"A": {1: 5, 3: 2}}
     const allRows = getEmptyAllRows();
-    // Ok so I'm thinking
-    // We go thru every column and see what's inside. Push to an array.
-    // Go thru every row and do the same.
-    // Now, while loop through their solutions. We cross check the rows & columns. We can use, like a count of solutions to see whether it's filled.
     const allColumns = getEmptyAllColumns();
     const enteredColumns = Object.keys(puzzleJson);
     enteredColumns.forEach((colKey) => {
@@ -25,21 +16,36 @@ function sudoku(puzzleJson) {
             allRows[key].push(obj[key]);
         });
     });
-    // Now go through puzzleJson. For each column, which rows are unfilled?
-    // In that row, which numbers are missing?
-    // When you find a number which is missing from both current row & current column, you put it in.
-    // The only problem im kinda thinking is that it is bad practice to make a change to an array while you're looping through it soo
+    // loop thru solns
     enteredColumns.forEach((colKey) => {
-        const filledRowKeys = Object.keys(puzzleJson[colKey]);
-        const allRowKeys = Object.keys(allRows);
-        const unfilledRows = allRowKeys.filter(
-            (x) => !filledRowKeys.includes(x)
+        const unfilledRows = difference(
+            Object.keys(allRows),
+            Object.keys(puzzleJson[colKey])
         );
-        unfilledRows.forEach((rowKey) => {
-            console.log(rowKey);
+        const numsNotInColumn = difference(
+            range(1, 9),
+            Object.values(puzzleJson[colKey])
+        );
+        unfilledRows.forEach((rowSquare) => {
+            // e.g. rowSquare = 1
+            console.log(numsNotInColumn);
+            const numsNotInRow = difference(range(1,9), allRows[rowSquare]);
+            console.log(union(numsNotInRow, numsNotInColumn));
+            const curr = puzzleJson[colKey][rowSquare];
         });
     });
 }
+// Now go through puzzleJson. For each column, which rows are unfilled?
+// In that row, which numbers are missing?
+// When you find a number which is missing from both current row & current column, you put it in.
+// The only problem im kinda thinking is that it is bad practice to make a change to an array while you're looping through it soo
+
+const union = (arr1, arr2) => arr1.filter((x) => arr2.includes(x));
+
+const difference = (arr1, arr2) => arr1.filter((x) => !arr2.includes(x));
+
+const range = (min, max) =>
+    Array.from({ length: max - min + 1 }, (_, i) => min + i);
 
 function getEmptyAllRows() {
     const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
