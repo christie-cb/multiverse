@@ -30,16 +30,9 @@ function sudoku(puzzleJson) {
             // e.g. rowSquare = 1
             const numsNotInRow = difference(range(1, 9), allRows[rowSquare]);
             const possibleEntries = union(numsNotInRow, numsNotInColumn);
-            
+
             // Show all possible entries for this square
-            console.log({colKey, rowSquare, possibleEntries })
-            
-            if (possibleEntries.length === 1) {
-                const entry = possibleEntries[0];
-                puzzleJson[colKey][rowSquare] = entry;
-                console.log(entry);
-                console.log(puzzleJson[colKey]);
-            }
+            console.log({ colKey, rowSquare, possibleEntries });
         });
     });
 }
