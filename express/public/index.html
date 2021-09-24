@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="joke.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("form").submit(function () {
+          var pupName = $("#pupid").val();
+          var alertMessage = "We love " + pupName;
+          alert(alertMessage);
+        });
+        $("button").click(function () {
+            var joke = getApiData().then(
+                function(value) {
+                    $('#api_data').text(value.joke);
+                },
+                function(error) {
+                    console.log(error);
+                }
+            );
+        });
+
+        $(function () {
+          $("#navigation").load("navbar.html");
+        });
+      });
+    </script>
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="navigation"></div>
+    <h1>Hola world.</h1>
+    <p>What is this wonderful place? Why was it created?</p>
+    <p>
+        Because a girl named Christie wanted to learn about Express.
+    </p>
+    <div
+      style="display: flex; flex: row nowrap; justify-content: space-between"
+    >
+      <div style="display: flex; flex-direction: column; width: 100%; margin-right: 10px;">
+        <h2>Tell me a joke.</h2>
+        <button style="align-self: center; width:20%;" type="submit" onclick="getApiData()">lol</button>
+        <span id="api_data"></span>
+      </div>
+      <div style="display: flex; flex-direction: column; width: 100%">
+        <h2>Peep this puppy.</h2>
+        <div
+          style="
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: row;
+          "
+        >
+          <img
+            style="margin-right: 5px"
+            src="https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U"
+          />
+          <form id="myForm">
+            <p>What shall we name him?</p>
+            <input type="text" name="pupname" id="pupid" />
+            <input type="submit" />
+          </form>
+          <div id="myResultDiv"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

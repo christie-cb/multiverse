@@ -1,0 +1,35 @@
+/* CSS HEX */
+--brandy-rose: #bb8b7c;
+--oyster-pink: #e8cfc8;
+--quill-gray: #dcdcdb;
+--rose-fog: #e4bcb4;
+--ferra: #74545c;
+--hint-of red: #f5f1f0;
+--nobel: #bcacac;
+--eunry: #cca49c;
+--fuchsia-pink: #b868b0;
+
+
+/* SCSS HEX */
+$brandy-rose: #bb8b7c;
+$oyster-pink: #e8cfc8;
+$quill-gray: #dcdcdb;
+$rose-fog: #e4bcb4;
+$ferra: #74545c;
+$hint-of red: #f5f1f0;
+$nobel: #bcacac;
+$eunry: #cca49c;
+$fuchsia-pink: #b868b0;
+
+
+/* SCSS RGB */
+--brandy-rose: rgba(187,139,124,1);
+--oyster-pink: rgba(232,207,200,1);
+--quill-gray: rgba(220,220,219,1);
+--rose-fog: rgba(228,188,180,1);
+--ferra: rgba(116,84,92,1);
+--hint-of red: rgba(245,241,240,1);
+--nobel: rgba(188,172,172,1);
+--eunry: rgba(204,164,156,1);
+--fuchsia-pink: rgba(184,104,176,1);
+

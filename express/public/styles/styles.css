@@ -1,0 +1,46 @@
+:root {
+    --brandy-rose: #bb8b7c;
+    --oyster-pink: #e8cfc8;
+    --quill-gray: #dcdcdb;
+    --rose-fog: #e4bcb4;
+    --ferra: #74545c;
+    --hint-of-red: #f5f1f0;
+    --nobel: #bcacac;
+    --eunry: #cca49c;
+}
+
+body {
+    background-color: var(--oyster-pink); /* lightblue; */
+    font-family: 'Azeret Mono', monospace;
+}
+
+h1, h2 {
+    background-color: white;
+    color: var(--brandy-rose);
+    text-align: center;
+}
+
+p {
+    font-size: 20px;
+}
+
+.center {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 20%;
+}
+
+.button {
+    border-radius: 10px;
+    background-color: white;
+    padding: 5px;
+}
+
+.button:link {
+    color:var(--ferra);
+}
+
+.button:visited {
+    color: PaleVioletRed; 
+}
