@@ -15,7 +15,6 @@ function sudoku(puzzleJson) {
     const allColumns = getEmptyAllColumns();
     const enteredColumns = Object.keys(puzzleJson);
     enteredColumns.forEach((colKey) => {
-        console.log(colKey);
         const entries = Object.values(puzzleJson[colKey]);
         allColumns[colKey].push(entries);
     });
@@ -26,7 +25,6 @@ function sudoku(puzzleJson) {
             allRows[key].push(obj[key]);
         });
     });
-    console.log(allRows);
     // Now go through puzzleJson. For each column, which rows are unfilled?
     // In that row, which numbers are missing?
     // When you find a number which is missing from both current row & current column, you put it in.
@@ -34,39 +32,40 @@ function sudoku(puzzleJson) {
     enteredColumns.forEach((colKey) => {
         const filledRowKeys = Object.keys(puzzleJson[colKey]);
         const allRowKeys = Object.keys(allRows);
-        const unfilledRows = allRowKeys.filter( x => !filledRowKeys.includes(x)) 
+        const unfilledRows = allRowKeys.filter(
+            (x) => !filledRowKeys.includes(x)
+        );
         unfilledRows.forEach((rowKey) => {
             console.log(rowKey);
-
         });
     });
 }
 
 function getEmptyAllRows() {
     const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    const allRows = nums.reduce(function (obj, x) {
-        obj[x] = [];
-        return obj;
-    }, {});
-    return allRows;
+    return objectComprehension(nums);
 }
 
 function getEmptyAllColumns() {
-    return {
-        A: [],
-        B: [],
-        C: [],
-        D: [],
-        E: [],
-        F: [],
-        G: [],
-        H: [],
-        I: [],
-    };
+    const letters = [
+      'A', 'B', 'C',
+      'D', 'E', 'F',
+      'G', 'H', 'I'
+    ];
+    return objectComprehension(letters);
+}
+
+function objectComprehension(keys) {
+    const object = keys.reduce(function (obj, x) {
+        obj[x] = [];
+        return obj;
+    }, {});
+    return object;
 }
 
 sudoku({
     A: { 2: 6, 3: 1, 4: 8, 9: 7 },
     B: { 2: 8, 3: 9, 4: 2, 6: 5, 8: 4 },
     C: { 5: 4, 7: 9, 9: 3 },
+    D: { 1: 2, 5: 1, 6: 6, 8: 3 },
 });
