@@ -24,9 +24,22 @@ function sudoku(puzzleJson) {
         const rowKeys = Object.keys(obj);
         rowKeys.forEach((key) => {
             allRows[key].push(obj[key]);
-        })
+        });
     });
     console.log(allRows);
+    // Now go through puzzleJson. For each column, which rows are unfilled?
+    // In that row, which numbers are missing?
+    // When you find a number which is missing from both current row & current column, you put it in.
+    // The only problem im kinda thinking is that it is bad practice to make a change to an array while you're looping through it soo
+    enteredColumns.forEach((colKey) => {
+        const filledRowKeys = Object.keys(puzzleJson[colKey]);
+        const allRowKeys = Object.keys(allRows);
+        const unfilledRows = allRowKeys.filter( x => !filledRowKeys.includes(x)) 
+        unfilledRows.forEach((rowKey) => {
+            console.log(rowKey);
+
+        });
+    });
 }
 
 function getEmptyAllRows() {
