@@ -29,11 +29,20 @@ function sudoku(puzzleJson) {
         unfilledRows.forEach((rowSquare) => {
             // e.g. rowSquare = 1
             const numsNotInRow = difference(range(1, 9), allRows[rowSquare]);
-            const curr = puzzleJson[colKey][rowSquare];
-            console.log(numsNotInRow);
+            const possibleEntries = union(numsNotInRow, numsNotInColumn);
+            
+            console.log({colKey, rowSquare, possibleEntries })
+            
+            if (possibleEntries.length === 1) {
+                const entry = possibleEntries[0];
+                puzzleJson[colKey][rowSquare] = entry;
+                console.log(entry);
+                console.log(puzzleJson[colKey]);
+            }
         });
     });
 }
+
 // Now go through puzzleJson. For each column, which rows are unfilled?
 // In that row, which numbers are missing?
 // When you find a number which is missing from both current row & current column, you put it in.
