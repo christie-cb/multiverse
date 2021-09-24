@@ -31,6 +31,7 @@ function sudoku(puzzleJson) {
             const numsNotInRow = difference(range(1, 9), allRows[rowSquare]);
             const possibleEntries = union(numsNotInRow, numsNotInColumn);
             
+            // Show all possible entries for this square
             console.log({colKey, rowSquare, possibleEntries })
             
             if (possibleEntries.length === 1) {
@@ -42,11 +43,6 @@ function sudoku(puzzleJson) {
         });
     });
 }
-
-// Now go through puzzleJson. For each column, which rows are unfilled?
-// In that row, which numbers are missing?
-// When you find a number which is missing from both current row & current column, you put it in.
-// The only problem im kinda thinking is that it is bad practice to make a change to an array while you're looping through it soo
 
 const union = (arr1, arr2) => arr1.filter((x) => arr2.includes(x));
 
