@@ -29,6 +29,13 @@ app.get("/companies/:companyId", async (req, res) => {
     res.send(JSON.stringify(companies));
 });
 
+app.get("/companies/:companyId/menus", async (req, res) => {
+    const companyId = req.params.companyId;
+    const menus = await Menu.findAll({ where: { CompanyId: companyId } });
+    console.log(menus);
+    res.send(JSON.stringify(menus));
+});
+
 const port = 3000;
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
