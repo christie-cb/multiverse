@@ -10,7 +10,7 @@ async function setupDb() {
     
     Location.belongsTo(Company, { foreignKey: "CompanyId" });
     Menu.belongsTo(Company, { foreignKey: "CompanyId" });
-    await db.sync({ force: true, logging: console.log });
+    await db.sync({ logging: console.log });
 }
 
 module.exports = setupDb;
