@@ -36,6 +36,16 @@ app.get("/companies/:companyId/menus", async (req, res) => {
     res.send(JSON.stringify(menus));
 });
 
+app.post("/companies", async (req, res) => {
+    console.log(req.body);
+    const newCompany = await Company.create({
+        name: req.body.name,
+        logoUrl: req.body.logoUrl,
+    });
+    console.log(newCompany);
+    res.send(JSON.stringify(newCompany));
+});
+
 const port = 3000;
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
