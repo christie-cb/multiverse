@@ -14,5 +14,8 @@
     "jest": "^27.2.2",
     "sequelize": "^6.6.5",
     "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "supertest": "^6.1.6"
   }
 }
