@@ -46,6 +46,12 @@ app.post("/companies", async (req, res) => {
     res.send(JSON.stringify(newCompany));
 });
 
+app.delete("/companies/:companyId", async (req, res) => {
+    const companyId = req.params.companyId;
+    Company.destroy({ where: { id: companyId } });
+    res.send(`Successfully destroyed company ${companyId}`)
+});
+
 const port = 3000;
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
