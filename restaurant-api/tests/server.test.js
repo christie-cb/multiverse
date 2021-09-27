@@ -31,8 +31,12 @@ describe("POST requests", () => {
             .expect("X-Powered-By", "Express")
             .expect(200)
             .then((response) => {
+                const createdCompanyId = response.body.id;
                 expect(response.body.name).toBe(sentData.name);
-                done();
+                // teardown
+                request(app)
+                    .delete(`/companies/${createdCompanyId}`)
+                    .expect(200, done);
             })
             .catch((err) => done(err));
     });
@@ -40,11 +44,12 @@ describe("POST requests", () => {
 
 describe("DELETE requests", () => {
     test("delete created company", function (done) {
+        // setup
         request(app)
-            .get("/companies")
+            .post("/companies")
             .then((response) => {
-                const lastCompany = response.body.length - 1;
-                const companyId = response.body[lastCompany].id;
+                const companyId = response.body.id;
+                // test
                 request(app)
                     .delete(`/companies/${companyId}`)
                     .expect(200, done);
