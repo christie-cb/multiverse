@@ -11,6 +11,8 @@ test("company has a name and an imageUrl", async () => {
         name: neroName,
         imageUrl: "https://picsum.photos/nero",
     });
+
     expect(nero).toBeInstanceOf(Company);
     expect(nero.name).toBe(neroName);
+    await Company.destroy({ where: { id: nero.id } });
 });
