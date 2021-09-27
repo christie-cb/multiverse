@@ -18,43 +18,33 @@ setupDb();
 
 app.get("/companies", async (req, res) => {
     const companies = await Company.findAll();
-    console.log(companies);
-    res.send(JSON.stringify(companies));
+    res.send(companies);
 });
 
 app.get("/companies/:companyId", async (req, res) => {
     const companyId = req.params.companyId;
     const companies = await Company.findAll({ where: { id: companyId } });
-    console.log(companies);
-    res.send(JSON.stringify(companies));
+    res.send(companies);
 });
 
 app.get("/companies/:companyId/menus", async (req, res) => {
     const companyId = req.params.companyId;
     const menus = await Menu.findAll({ where: { CompanyId: companyId } });
-    console.log(menus);
-    res.send(JSON.stringify(menus));
+    res.send(menus);
 });
 
 app.post("/companies", async (req, res) => {
-    console.log(req.body);
     const newCompany = await Company.create({
         name: req.body.name,
         logoUrl: req.body.logoUrl,
     });
-    console.log(newCompany);
-    res.send(JSON.stringify(newCompany));
+    res.send(newCompany);
 });
 
 app.delete("/companies/:companyId", async (req, res) => {
     const companyId = req.params.companyId;
     Company.destroy({ where: { id: companyId } });
     res.send(`Successfully destroyed company ${companyId}`)
-});
-
-const port = 3000;
-app.listen(port, () => {
-    console.log(`Server listening at http://localhost:${port}`);
 });
 
 module.exports = app;
