@@ -5,20 +5,17 @@ describe("GET requests", () => {
     test("get all companies", function (done) {
         request(app)
             .get("/companies")
-            .expect("X-Powered-By", "Express")
             .expect(200, done);
     });
 
     test("get company by ID", async () => {
         const response = await request(app).get("/companies/21");
         expect(response.statusCode).toBe(200);
-        expect(response.headers["content-length"] >= 0).toBeTruthy();
     });
 
     test("get company menus by ID", async () => {
         const response = await request(app).get("/companies/1/menus");
         expect(response.statusCode).toBe(200);
-        expect(response.headers["content-length"] >= 0).toBeTruthy();
     });
 });
 
@@ -28,7 +25,6 @@ describe("POST requests", () => {
         request(app)
             .post("/companies")
             .send(sentData)
-            .expect("X-Powered-By", "Express")
             .expect(200)
             .then((response) => {
                 const createdCompanyId = response.body.id;
