@@ -1,5 +1,7 @@
 const express = require("express");
 const setupDb = require("./setupDb");
+const { validate, ValidationError, Joi } = require("express-validation");
+
 const Company = require("./models/company");
 const Location = require("./models/location");
 const Menu = require("./models/menu");
@@ -33,13 +35,24 @@ app.get("/companies/:companyId/menus", async (req, res) => {
     res.send(menus);
 });
 
-app.post("/companies", async (req, res) => {
-    const newCompany = await Company.create({
-        name: req.body.name,
-        logoUrl: req.body.logoUrl,
-    });
-    res.send(newCompany);
-});
+const companyValidation = {
+    body: Joi.object({
+        name: Joi.string().required(),
+        logoUrl: Joi.string().required(),
+    }),
+};
+
+app.post(
+    "/companies",
+    validate(companyValidation, {}, {}),
+    async (req, res) => {
+        const newCompany = await Company.create({
+            name: req.body.name,
+            logoUrl: req.body.logoUrl,
+        });
+        res.send(newCompany);
+    }
+);
 
 app.delete("/companies/:companyId", async (req, res) => {
     const companyId = req.params.companyId;
@@ -65,21 +78,38 @@ app.get("/menus/:menuId", async (req, res) => {
     res.send(menus);
 });
 
-app.post("/companies/:companyId/menus", async (req, res) => {
-    const companyId = req.params.companyId;
-    const company = await Company.findByPk(companyId);
-    const newMenu = await Menu.create({
-        title: req.body.title,
-        CompanyId: companyId,
-    });
-    company.addMenu(newMenu);
-    res.send(newMenu);
-});
+const menuValidation = {
+    body: Joi.object({
+        title: Joi.string().required(),
+    }),
+};
+
+app.post(
+    "/companies/:companyId/menus",
+    validate(menuValidation, {}, {}),
+    async (req, res) => {
+        const companyId = req.params.companyId;
+        const company = await Company.findByPk(companyId);
+        const newMenu = await Menu.create({
+            title: req.body.title,
+            CompanyId: companyId,
+        });
+        company.addMenu(newMenu);
+        res.send(newMenu);
+    }
+);
 
 app.delete("/menus/:menuId", async (req, res) => {
     const menuId = req.params.menuId;
     await Menu.destroy({ where: { id: menuId } });
     res.send(`Successfully destroyed menu ${menuId}`);
+});
+
+app.use(function (err, req, res, next) {
+    if (err instanceof ValidationError) {
+        return res.status(err.statusCode).json(err);
+    }
+    return res.status(500).json(err);
 });
 
 module.exports = app;
