@@ -1,5 +1,15 @@
+const Menu = require("../models/menu");
+const Company = require("../models/company");
+
 const app = require("../app");
 const request = require("supertest");
+const setupDb = require("../setupDb");
+const seedTestData = require("./utils");
+
+beforeEach(async () => {
+    await setupDb(true);
+    await seedTestData();
+});
 
 describe("GET requests", () => {
     test("get all companies", function (done) {
@@ -49,32 +59,14 @@ describe("POST requests", () => {
 
 describe("DELETE requests", () => {
     test("delete created company", function (done) {
-        // setup
-        request(app)
-            .post("/companies")
-            .then((response) => {
-                const companyId = response.body.id;
-                // test
-                request(app)
-                    .delete(`/companies/${companyId}`)
-                    .expect(200, done);
-            })
-            .catch((err) => done(err));
+        Company.findOne().then((company) => {
+            request(app).delete(`/companies/${company.id}`).expect(200, done);
+        });
     });
 
     test("delete created menu", function (done) {
-        // setup
-        const sentData = { title: "bread" };
-        request(app)
-            .post("/menus")
-            .send(sentData)
-            .then((response) => {
-                // test
-                const createdMenuId = response.body.id;
-                request(app)
-                    .delete(`/menus/${createdMenuId}`)
-                    .expect(200, done);
-            })
-            .catch((err) => done(err));
+        Menu.findOne().then((menu) => {
+            request(app).delete(`/menus/${menu.id}`).expect(200, done);
+        });
     });
 });
