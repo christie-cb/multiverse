@@ -7,10 +7,10 @@ async function setupDb() {
     // Locations and menus both belong to a particular company.
     Company.hasMany(Location);
     Company.hasMany(Menu);
-    
+
     Location.belongsTo(Company, { foreignKey: "CompanyId" });
     Menu.belongsTo(Company, { foreignKey: "CompanyId" });
-    await db.sync({ logging: console.log });
+    await db.sync();
 }
 
 module.exports = setupDb;
