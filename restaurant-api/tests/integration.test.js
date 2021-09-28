@@ -58,9 +58,12 @@ describe("DELETE request integration tests", () => {
 
     test("delete created menu", async () => {
         // setup
+        const randomCompany = await Company.findOne();
+        const sentData = { title: "delete menu"}
         const response = await request(app)
-            .post("/menus")
-            .send({ name: "delete menu test" });
+            .post(`/companies/${randomCompany.id}/menus`)
+            .send(sentData)
+            .expect(200);
         const menuId = response.body.id;
         Menu.count({ where: { id: menuId } }).then((count) =>
             expect(count).not.toBe(0)
