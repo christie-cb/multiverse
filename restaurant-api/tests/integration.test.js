@@ -12,9 +12,9 @@ describe("POST request integration tests", () => {
     test("create company", async () => {
         // test
         const sentData = { name: "test company" };
-        const response = await request(app).post("/companies").send();
+        const response = await request(app).post("/companies").send(sentData);
         const companyId = response.body.id;
-        Company.findAll({ where: { id: companyId } }).then((company) => {
+        Company.findOne({ where: { id: companyId } }).then((company) => {
             expect(company).not.toBe(null);
             expect(company.name).toBe(sentData.name);
         });
@@ -25,7 +25,7 @@ describe("POST request integration tests", () => {
     test("create menu", async () => {
         // test
         const sentData = { title: "test menu" };
-        const response = await request(app).post("/menus").send();
+        const response = await request(app).post("/menus").send(sentData);
         const menuId = response.body.id;
         Menu.findAll({ where: { id: menuId } }).then((menu) => {
             expect(menu).not.toBe(null);
