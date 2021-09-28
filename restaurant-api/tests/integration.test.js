@@ -20,38 +20,25 @@ describe("DELETE request integration tests", () => {
         );
 
         // test
-        await request(app).delete(`/companies/${companyId}`);
-        const deletedCompany = await Company.findByPk(companyId);
-        console.log(deletedCompany);
+        await request(app).delete(`/companies/${companyId}`).expect(200);
         Company.count({ where: { id: companyId } }).then((count) =>
             expect(count).toBe(0)
         );
     });
 
-    test("delete created menu", function (done) {
+    test("delete created menu", async () => {
         // setup
-        const sentData = { title: "bread" };
-        request(app)
+        const response = await request(app)
             .post("/menus")
-            .send(sentData)
-            .then((response) => {
-                // test
-                const createdMenu = Menu.findAll({
-                    where: { id: response.body.id },
-                });
-                console.log(`CREATEDMENU: ${createdMenu}`);
-                expect(createdMenu).not.toBe(undefined);
-                request(app)
-                    .delete(`/menus/${response.body.id}`)
-                    .expect(200)
-                    .then((delResponse) => {
-                        const deletedMenu = Menu.findAll({
-                            where: { id: response.body.id },
-                        });
-                        expect(createdMenu).toBe(undefined);
-                        done();
-                    });
-            })
-            .catch((err) => done(err));
+            .send({ name: "delete menu test" });
+        const menuId = response.body.id;
+        Menu.count({ where: { id: menuId} }).then((count) =>
+            expect(count).not.toBe(0)
+        );
+        // test
+        await request(app).delete(`/menus/${menuId}`).expect(200);
+        Menu.count({ where: { id: menuId } }).then((count) =>
+            expect(count).toBe(0)
+        );
     });
 });
