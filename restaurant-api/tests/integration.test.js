@@ -5,7 +5,7 @@ const Company = require("../models/company");
 const setupDb = require("../setupDb");
 const seedTestData = require("./utils");
 
-beforeAll(async () => {
+beforeEach(async () => {
     await setupDb(true);
     await seedTestData();
 });
@@ -37,16 +37,8 @@ describe("POST request integration tests", () => {
 
 describe("DELETE request integration tests", () => {
     test("delete created company", async () => {
-        // setup
-        const response = await request(app)
-            .post("/companies")
-            .send({ name: "delete company test" });
-        const companyId = response.body.id;
-        Company.count({ where: { id: companyId } }).then((count) =>
-            expect(count).not.toBe(0)
-        );
-
-        // test
+        const randomCompany = await Company.findOne();
+        const companyId = randomCompany.id;
         await request(app).delete(`/companies/${companyId}`).expect(200);
         Company.count({ where: { id: companyId } }).then((count) =>
             expect(count).toBe(0)
@@ -54,18 +46,8 @@ describe("DELETE request integration tests", () => {
     });
 
     test("delete created menu", async () => {
-        // setup
-        const randomCompany = await Company.findOne();
-        const sentData = { title: "delete menu"}
-        const response = await request(app)
-            .post(`/companies/${randomCompany.id}/menus`)
-            .send(sentData)
-            .expect(200);
-        const menuId = response.body.id;
-        Menu.count({ where: { id: menuId } }).then((count) =>
-            expect(count).not.toBe(0)
-        );
-        // test
+        const randomMenu = await Menu.findOne();
+        const menuId = randomMenu.id;
         await request(app).delete(`/menus/${menuId}`).expect(200);
         Menu.count({ where: { id: menuId } }).then((count) =>
             expect(count).toBe(0)
