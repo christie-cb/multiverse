@@ -12,7 +12,6 @@ beforeAll(async () => {
 
 describe("POST request integration tests", () => {
     test("create company", async () => {
-        // test
         const sentData = { name: "test company" };
         const response = await request(app).post("/companies").send(sentData);
         const companyId = response.body.id;
@@ -20,12 +19,9 @@ describe("POST request integration tests", () => {
             expect(company).not.toBe(null);
             expect(company.name).toBe(sentData.name);
         });
-        // teardown
-        await request(app).delete(`/companies/${companyId}`);
     });
 
     test("create menu", async () => {
-        // test
         const sentData = { title: "test menu" };
         const randomCompany = await Company.findOne();
         const response = await request(app)
@@ -36,10 +32,9 @@ describe("POST request integration tests", () => {
             expect(menu).not.toBe(null);
             expect(menu.title).toBe(sentData.title);
         });
-        // teardown
-        await request(app).delete(`/menus/${menuId}`);
     });
 });
+
 describe("DELETE request integration tests", () => {
     test("delete created company", async () => {
         // setup
