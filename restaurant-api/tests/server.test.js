@@ -13,7 +13,14 @@ beforeEach(async () => {
 
 describe("GET requests", () => {
     test("get all companies", function (done) {
-        request(app).get("/companies").expect(200, done);
+        request(app)
+            .get("/companies")
+            .expect(200)
+            .then((response) => {
+                expect(response.body[0].name).not.toBe(null);
+                done();
+            })
+            .catch((err) => done(err));
     });
 
     test("get company by ID", async () => {
