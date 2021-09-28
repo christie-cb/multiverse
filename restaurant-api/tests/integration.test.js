@@ -15,34 +15,17 @@ describe("DELETE request integration tests", () => {
             .post("/companies")
             .send({ name: "delete company test" });
         const companyId = response.body.id;
-        const createdCompany = await Company.findByPk(companyId);
-        expect(createdCompany).not.toBe(undefined);
-        // test
-        const deleteResponse = await request(app).delete(
-            `/companies/${companyId}`
+        Company.count({ where: { id: companyId } }).then((count) =>
+            expect(count).not.toBe(0)
         );
+
+        // test
+        await request(app).delete(`/companies/${companyId}`);
         const deletedCompany = await Company.findByPk(companyId);
         console.log(deletedCompany);
         Company.count({ where: { id: companyId } }).then((count) =>
             expect(count).toBe(0)
         );
-    });
-
-    test("delete created company", function (done) {
-        // setup
-        request(app)
-            .post("/companies")
-            .send({ name: "delete company test" })
-            .then((response) => {
-                const companyId = response.body.id;
-                const createdCompany = Company.findByPk(companyId);
-                expect(createdCompany).not.toBe(undefined);
-                // test
-                request(app)
-                    .delete(`/companies/${companyId}`)
-                    .expect(200, done);
-            })
-            .catch((err) => done(err));
     });
 
     test("delete created menu", function (done) {
