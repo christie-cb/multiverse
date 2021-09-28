@@ -25,16 +25,18 @@ describe("POST request integration tests", () => {
     test("create menu", async () => {
         // test
         const sentData = { title: "test menu" };
-        const response = await request(app).post("/menus").send(sentData);
+        const randomCompany = await Company.findOne();
+        const response = await request(app)
+            .post(`/companies/${randomCompany.id}/menus`)
+            .send(sentData);
         const menuId = response.body.id;
-        Menu.findAll({ where: { id: menuId } }).then((menu) => {
+        Menu.findOne({ where: { id: menuId } }).then((menu) => {
             expect(menu).not.toBe(null);
             expect(menu.title).toBe(sentData.title);
         });
         // teardown
         await request(app).delete(`/menus/${menuId}`);
     });
-
 });
 describe("DELETE request integration tests", () => {
     test("delete created company", async () => {
