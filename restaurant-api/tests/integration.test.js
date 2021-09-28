@@ -3,9 +3,11 @@ const request = require("supertest");
 const Menu = require("../models/menu");
 const Company = require("../models/company");
 const setupDb = require("../setupDb");
+const seedTestData = require("./utils");
 
 beforeAll(async () => {
-    await setupDb();
+    await setupDb(true);
+    await seedTestData();
 });
 
 describe("POST request integration tests", () => {
