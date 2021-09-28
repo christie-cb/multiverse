@@ -46,12 +46,8 @@ describe("POST requests", () => {
             .send(sentData)
             .expect(200)
             .then((response) => {
-                const createdCompanyId = response.body.id;
                 expect(response.body.name).toBe(sentData.name);
-                // teardown
-                request(app)
-                    .delete(`/companies/${createdCompanyId}`)
-                    .expect(200, done);
+                done();
             })
             .catch((err) => done(err));
     });
