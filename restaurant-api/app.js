@@ -44,7 +44,42 @@ app.post("/companies", async (req, res) => {
 app.delete("/companies/:companyId", async (req, res) => {
     const companyId = req.params.companyId;
     Company.destroy({ where: { id: companyId } });
-    res.send(`Successfully destroyed company ${companyId}`)
+    res.send(`Successfully destroyed company ${companyId}`);
+});
+
+// Extension Assignments
+//● Get a specific menu by its id
+//● Replace a specific company
+//● Create a new menu
+//● Delete a menu
+//● Create a new location
+
+app.get("/menus", async (req, res) => {
+    const menus = await Menu.findAll();
+    res.send(menus);
+});
+
+app.get("/menus/:menuId", async (req, res) => {
+    const menuId = req.params.menuId;
+    const menus = await Menu.findByPk(menuId);
+    res.send(menus);
+});
+
+app.post("/companies/:companyId/menus", async (req, res) => {
+    const companyId = req.params.companyId;
+    const company = await Company.findByPk(companyId);
+    const newMenu = await Menu.create({
+        title: req.body.title,
+        CompanyId: companyId,
+    });
+    company.addMenu(newMenu);
+    res.send(newMenu);
+});
+
+app.delete("/menus/:menuId", async (req, res) => {
+    const menuId = req.params.menuId;
+    await Menu.destroy({ where: { id: menuId } });
+    res.send(`Successfully destroyed menu ${menuId}`);
 });
 
 module.exports = app;
