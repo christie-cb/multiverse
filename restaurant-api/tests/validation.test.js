@@ -13,26 +13,36 @@ beforeEach(async () => {
 
 describe("POST request validation tests", () => {
     test("unsuccessfully create company", function (done) {
-        const incorrectData = { key: "value" };
+        const incorrectData = { key: "value", logoUrl: "https://blah.com" };
         request(app)
             .post("/companies")
             .send(incorrectData)
-            .expect(500)
+            .expect(400)
             .then((response) => {
-                expect(response.body.message.includes("name")).toBeTruthy();
-                expect(response.body.message.includes("logoUrl")).toBeTruthy();
+                expect(response.error.text.includes("name")).toBeTruthy();
                 done();
             })
             .catch((err) => done(err));
+        const otherIncorrectData = { name: "value" };
+        request(app)
+            .post("/companies")
+            .send(otherIncorrectData)
+            .expect(400)
+            .then((response) => {
+                expect(response.error.text.includes("logoUrl")).toBeTruthy();
+                done();
+            })
+            .catch((err) => done(err));
+
     });
 
     test("unsuccessfully create menu", async () => {
         const randomCompany = await Company.findOne();
         const incorrectData = { key: "value" };
         const response = await request(app)
-            .post(`/companies/${randomCompany.id}`)
+            .post(`/companies/${randomCompany.id}/menus`)
             .send(incorrectData)
-            .expect(500);
-        expect(response.body.message.includes("title")).toBeTruthy();
+            .expect(400);
+        expect(response.error.text.includes("title")).toBeTruthy();
     });
 });
