@@ -1,0 +1,21 @@
+<!--home.handlebars-->
+<link rel="stylesheet" href="/css/home.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap"
+    rel="stylesheet"
+/>
+<h1>Our Clients</h1>
+<div class="row">
+    {{#grouped_each 3 companies}}
+        <article class="column">
+            {{#each this}}
+            <div style="background-color: var(--brandy-rose);">
+                <span><img class="grid-image" src={{logoUrl}} /></span>
+                <h3 style="padding: 0px 5px 10px 5px; color: white; text-align:center;">{{name}}</h3>
+            </div>
+            {{/each}}
+        </article>
+    {{/grouped_each}}
+</div>
