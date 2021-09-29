@@ -39,7 +39,7 @@ describe("DELETE request integration tests", () => {
     test("delete created company", async () => {
         const randomCompany = await Company.findOne();
         const companyId = randomCompany.id;
-        await request(app).delete(`/companies/${companyId}`).expect(200);
+        await request(app).delete(`/companies/${companyId}`).expect(204);
         Company.count({ where: { id: companyId } }).then((count) =>
             expect(count).toBe(0)
         );
