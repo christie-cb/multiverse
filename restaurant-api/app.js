@@ -67,8 +67,11 @@ app.get("/menus", async (req, res) => {
 
 app.get("/menus/:menuId", async (req, res) => {
     const menuId = req.params.menuId;
-    const menus = await Menu.findByPk(menuId);
-    res.send(menus);
+    const menu = await Menu.findByPk(menuId);
+    if (!menu) {
+        return res.status(404).send({ error: `No menu ${menuId}` });
+    }
+    res.send(menu);
 });
 
 const menuValidation = {

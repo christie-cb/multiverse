@@ -47,6 +47,10 @@ describe("GET requests", () => {
     test("get menu by menu ID", async () => {
         const response = await request(app).get("/menus/1");
         expect(response.statusCode).toBe(200);
+
+        const notFound = await request(app).get("/menus/100000");
+        expect(notFound.statusCode).toBe(404);
+ 
     });
 });
 
