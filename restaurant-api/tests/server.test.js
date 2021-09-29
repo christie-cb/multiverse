@@ -50,23 +50,33 @@ describe("GET requests", () => {
 
         const notFound = await request(app).get("/menus/100000");
         expect(notFound.statusCode).toBe(404);
- 
     });
 });
 
 describe("POST requests", () => {
-    test("create new company", function (done) {
+    test("create new company", async () => {
         const sentData = { name: "test name", logoUrl: "https://1.com" };
-        request(app)
+        const response = await request(app)
             .post("/companies")
             .send(sentData)
-            .expect(200)
-            .then((response) => {
-                expect(response.body.name).toBe(sentData.name);
-                done();
-            })
-            .catch((err) => done(err));
+            .expect(200);
+        expect(response.body.name).toBe(sentData.name);
     });
+
+    test("create new menu by company ID", async () => {
+        const sentData = { title: "drinks" };
+        const notFoundResponse = await request(app)
+            .post("/companies/100000/menus")
+            .send(sentData)
+            .expect(404);
+        
+        const response = await request(app)
+            .post("/companies/1/menus")
+            .send(sentData)
+            .expect(200);
+        expect(response.body.title).toBe(sentData.title);
+    });
+
 });
 
 describe("DELETE requests", () => {
