@@ -1,5 +1,6 @@
 const express = require("express");
 const setupDb = require("../restaurant-api/setupDb");
+const { validate, ValidationError, Joi } = require("express-validation");
 
 const Company = require("../restaurant-api/models/company");
 const Location = require("../restaurant-api/models/location");
@@ -71,12 +72,31 @@ app.get("/form", async (req, res) => {
     res.render("form", {});
 });
 
-app.post("/companies", async (req, res) => {
-    const newCompany = await Company.create({
-        name: req.body.name,
-        logoUrl: req.body.logoUrl,
-    });
-    res.send(newCompany);
+const companyValidation = {
+    body: Joi.object({
+        name: Joi.string().required(),
+        logoUrl: Joi.string().required(),
+    }),
+};
+
+app.post(
+    "/companies",
+    validate(companyValidation, {}, {}),
+    async (req, res) => {
+        const newCompany = await Company.create({
+            name: req.body.name,
+            logoUrl: req.body.logoUrl,
+        });
+        const errors = valiadtion
+        res.render("form", {});
+    }
+);
+
+app.use(function (err, req, res, next) {
+    if (err instanceof ValidationError) {
+        return res.status(err.statusCode).json(err);
+    }
+    return res.status(500).json(err);
 });
 
 module.exports = app;
