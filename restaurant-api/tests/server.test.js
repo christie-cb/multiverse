@@ -31,7 +31,6 @@ describe("GET requests", () => {
         // Trying to get a company which does exist => 200
         const okResponse = await request(app).get("/companies/1");
         expect(okResponse.statusCode).toBe(200);
- 
     });
 
     test("get company menus by company ID", async () => {
@@ -67,9 +66,17 @@ describe("POST requests", () => {
 });
 
 describe("DELETE requests", () => {
+    test("delete company", async () => {
+        const company = await Company.findOne();
+        await request(app).delete(`/companies/${company.id}`).expect(204);
+
+        const nonExistentCompany = `/companies/10000`;
+        await request(app).delete(nonExistentCompany).expect(404);
+    });
+
     test("delete created company", function (done) {
         Company.findOne().then((company) => {
-            request(app).delete(`/companies/${company.id}`).expect(200, done);
+            request(app).delete(`/companies/${company.id}`).expect(204, done);
         });
     });
 
