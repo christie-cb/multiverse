@@ -1,37 +1,54 @@
 <!--home.handlebars-->
-<link rel="stylesheet" href="/css/home.css" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-    href="https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap"
-    rel="stylesheet"
-/>
-<h1>Our Clients</h1>
-<div style="display: flex; justify-content: center;">
-    <p style="width: 80%; font-size: 16px; text-align: center;">
-        Our philosophy can be simply stated: we work with our clients to assist
-        them in achieving their objectives. Since 1989 when we first started
-        selling our beautiful blooms, the dream has always been to create
-        something positive. Placing your order with us doesn't just end there,
-        you are part of something bigger. Every order helps to make a
-        difference.
-    </p>
-</div>
-<div class="row">
-    {{#grouped_each 3 companies}}
-        <article class="column">
-            {{#each this}}
-                <a href={{company_url id}}>
-                <div
-                    style="padding: 0px 10px 0px 10px; background-color: var(--brandy-rose);"
-                >
-                    <span><img class="grid-image" src={{logoUrl}} /></span>
-                    <h3
-                        style="padding-bottom: 15px; color: white; text-align:center;"
-                    >{{name}}</h3>
-                </div>
-                </a>
-            {{/each}}
-        </article>
-    {{/grouped_each}}
-</div>
+
+<head>
+    <script src="joke.js"></script>
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <script>
+        $(document).ready(function () { $(function () {
+        $("#navigation").load("navbar.html"); }); });
+    </script>
+    <link rel="stylesheet" href="/css/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap"
+        rel="stylesheet"
+    />
+</head>
+<body>
+    <div style="padding-top: 2px;" id="navigation"></div>
+    <h1>Our Clients</h1>
+    <div style="display: flex; justify-content: center;">
+        <p style="width: 80%; font-size: 16px; text-align: center;">
+            Our philosophy can be simply stated: we work with our clients to
+            assist them in achieving their objectives. Since 1989 when we first
+            started selling our beautiful blooms, the dream has always been to
+            create something positive. Placing your order with us doesn't just
+            end there, you are part of something bigger. Every order helps to
+            make a difference.
+        </p>
+    </div>
+    <div class="row">
+        {{#grouped_each 3 companies}}
+            <article class="column">
+                {{#each this}}
+                    <a href={{company_url id}}>
+                        <div
+                            style="padding: 0px 10px 0px 10px; background-color: var(--brandy-rose);"
+                        >
+                            <span><img
+                                    class="grid-image"
+                                    src={{logoUrl}}
+                                /></span>
+                            <h3
+                                style="padding-bottom: 15px; color: white; text-align:center;"
+                            >{{name}}</h3>
+                        </div>
+                    </a>
+                {{/each}}
+            </article>
+        {{/grouped_each}}
+    </div>
+</body>

@@ -1,0 +1,30 @@
+ul {
+    list-style-type: none; /* Removes any bullets from list. */
+    padding: 0;
+}
+
+li {
+    display: inline;
+}
+
+.nav-item {
+    background-color: white;
+    padding: 14px 16px;
+    font-size: large;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: white;
+}
+
+a:visited {
+    color: var(--brandy-rose);
+}
+
+a:link {
+    color: FloralWhite;
+}
