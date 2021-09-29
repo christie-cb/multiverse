@@ -1,6 +1,5 @@
 const express = require("express");
 const setupDb = require("../restaurant-api/setupDb");
-const { validate, ValidationError, Joi } = require("express-validation");
 
 const Company = require("../restaurant-api/models/company");
 const Location = require("../restaurant-api/models/location");
@@ -18,6 +17,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.static(path.join(__dirname, "/views")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 setupDb();
 
 // setup our templating engine
