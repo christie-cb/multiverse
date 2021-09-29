@@ -7,15 +7,14 @@
     rel="stylesheet"
 />
 <h1>{{company.name}}</h1>
-<div style="display: flex; justify-content: center">
-    <h2 style="width: 80%; text-align: center">
-        Menus
-    </h2>
-</div>
-<div style="display: flex; flex-direction:column; align-content:start; align-items: center;">
+<span><img class="grid-image" src={{company.logoUrl}} /></span>
+<h2>Menus</h2>
+<div
+    style="display: flex; flex-direction:column; align-content:start; align-items: center;"
+>
     {{#each menus}}
-    <div style="width:80%; align-items:start;">
-        <li>{{this.title}}</li>
-    <div>
+        <div style="width:80%; align-items:start;">
+            <li>{{this.title}}</li>
+        </div>
     {{/each}}
 </div>
