@@ -7,14 +7,28 @@
     rel="stylesheet"
 />
 <h1>Our Clients</h1>
+<div style="display: flex; justify-content: center;">
+    <p style="width: 80%; font-size: 16px; text-align: center;">
+        Our philosophy can be simply stated: we work with our clients to assist
+        them in achieving their objectives. Since 1989 when we first started
+        selling our beautiful blooms, the dream has always been to create
+        something positive. Placing your order with us doesn't just end there,
+        you are part of something bigger. Every order helps to make a
+        difference.
+    </p>
+</div>
 <div class="row">
     {{#grouped_each 3 companies}}
         <article class="column">
             {{#each this}}
-            <div style="background-color: var(--brandy-rose);">
-                <span><img class="grid-image" src={{logoUrl}} /></span>
-                <h3 style="padding: 0px 5px 10px 5px; color: white; text-align:center;">{{name}}</h3>
-            </div>
+                <div
+                    style="padding: 0px 10px 0px 10px; background-color: var(--brandy-rose);"
+                >
+                    <span><img class="grid-image" src={{logoUrl}} /></span>
+                    <h3
+                        style="padding-bottom: 15px; color: white; text-align:center;"
+                    >{{name}}</h3>
+                </div>
             {{/each}}
         </article>
     {{/grouped_each}}
