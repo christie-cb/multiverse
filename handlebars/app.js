@@ -41,14 +41,23 @@ const handlebars = expressHandlebars.create({
             }
             return out;
         },
+        company_url: function (id) {
+            return `companies/${id}`;
+        },
     },
 });
-app.engine('handlebars', handlebars.engine);
+app.engine("handlebars", handlebars.engine);
 app.set("view engine", "handlebars");
 
 app.get("/", async (req, res) => {
     const companies = await Company.findAll();
     res.render("home", { companies });
+});
+
+app.get("/companies/:id", async (req, res) => {
+    const company = await Company.findOne({ where: { id: req.params.id } });
+    const menus = await Menu.findAll({ where: { CompanyId: company.id } });
+    res.render("companies", { company, menus });
 });
 
 module.exports = app;
