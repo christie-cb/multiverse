@@ -16,10 +16,9 @@ describe("POST request integration tests", () => {
         const sentData = { name: "test company", logoUrl: "https://.com" };
         const response = await request(app).post("/companies").send(sentData);
         const companyId = response.body.id;
-        await Company.findOne({ where: { id: companyId } }).then((company) => {
-            expect(company).not.toBe(null);
-            expect(company.name).toBe(sentData.name);
-        });
+        const company = await Company.findOne({ where: { id: companyId } });
+        expect(company).toBeInstanceOf(Company);
+        expect(company.name).toBe(sentData.name);
     });
 
     test("create menu", async () => {
@@ -29,10 +28,10 @@ describe("POST request integration tests", () => {
             .post(`/companies/${randomCompany.id}/menus`)
             .send(sentData);
         const menuId = response.body.id;
-        Menu.findOne({ where: { id: menuId } }).then((menu) => {
-            expect(menu).not.toBe(null);
-            expect(menu.title).toBe(sentData.title);
-        });
+        const menu = await Menu.findOne({ where: { id: menuId } });
+        console.log(menu);
+        expect(menu).toBeInstanceOf(Menu);
+        expect(menu.title).toBe(sentData.title);
     });
 });
 
@@ -50,8 +49,8 @@ describe("DELETE request integration tests", () => {
         const randomMenu = await Menu.findOne();
         const menuId = randomMenu.id;
         await request(app).delete(`/menus/${menuId}`).expect(200);
-        Menu.count({ where: { id: menuId } }).then((count) =>
-            expect(count).toBe(0)
-        ).catch((error) => expect(error).toBe(null));
+        Menu.count({ where: { id: menuId } })
+            .then((count) => expect(count).toBe(0))
+            .catch((error) => expect(error).toBe(null));
     });
 });
