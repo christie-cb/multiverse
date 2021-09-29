@@ -18,8 +18,11 @@ app.get("/companies", async (req, res) => {
 
 app.get("/companies/:companyId", async (req, res) => {
     const companyId = req.params.companyId;
-    const companies = await Company.findAll({ where: { id: companyId } });
-    res.send(companies);
+    const company = await Company.findAll({ where: { id: companyId } });
+    if (!company || company.length === 0) {
+        return res.sendStatus(404)
+    }
+    res.send(company);
 });
 
 app.get("/companies/:companyId/menus", async (req, res) => {
@@ -49,7 +52,7 @@ app.post(
 
 app.delete("/companies/:companyId", async (req, res) => {
     const companyId = req.params.companyId;
-    Company.destroy({ where: { id: companyId } });
+    await Company.destroy({ where: { id: companyId } });
     res.send(`Successfully destroyed company ${companyId}`);
 });
 

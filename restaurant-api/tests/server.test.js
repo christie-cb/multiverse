@@ -24,8 +24,14 @@ describe("GET requests", () => {
     });
 
     test("get company by ID", async () => {
-        const response = await request(app).get("/companies/21");
-        expect(response.statusCode).toBe(200);
+        // Trying to get a company which doesn't exist => 404
+        const notFoundResponse = await request(app).get("/companies/21");
+        expect(notFoundResponse.statusCode).toBe(404);
+
+        // Trying to get a company which does exist => 200
+        const okResponse = await request(app).get("/companies/1");
+        expect(okResponse.statusCode).toBe(200);
+ 
     });
 
     test("get company menus by company ID", async () => {
