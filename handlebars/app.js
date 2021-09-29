@@ -79,18 +79,16 @@ const companyValidation = {
     }),
 };
 
-app.post(
-    "/companies",
-    validate(companyValidation, {}, {}),
-    async (req, res) => {
-        const newCompany = await Company.create({
-            name: req.body.name,
-            logoUrl: req.body.logoUrl,
+app.post("/companies", async (req, res) => {
+    const { name, logoUrl } = req.body;
+    if (!name || !logoUrl) {
+        return res.render("form", {
+            error: "Name and URL are required fields.",
         });
-        const errors = valiadtion
-        res.render("form", {});
     }
-);
+    await Company.create({ name, logoUrl });
+    res.render("form", { title: "Successfully submitted company."});
+});
 
 app.use(function (err, req, res, next) {
     if (err instanceof ValidationError) {
