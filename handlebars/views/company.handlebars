@@ -17,4 +17,21 @@
             <li>{{this.title}}</li>
         </div>
     {{/each}}
+
 </div>
+
+<h2>Locations</h2>
+<div
+    style="display: flex; flex-direction:column; align-content:start; align-items: center;"
+>
+    {{#each locations}}
+        <div style="width:80%; align-items:start;">
+            <li>{{this.name}}</li>
+            </br>
+            <em>Capacity: {{this.capacity}}</em>
+            </br>
+            <em>Manager: {{this.manager}}</em>
+        </div>
+    {{/each}}
+
+
