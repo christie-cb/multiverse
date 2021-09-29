@@ -86,11 +86,14 @@ app.post(
     async (req, res) => {
         const companyId = req.params.companyId;
         const company = await Company.findByPk(companyId);
+        if (!company) {
+            return res.status(404).send({ error: `No company ${companyId}` });
+        }
         const newMenu = await Menu.create({
             title: req.body.title,
             CompanyId: companyId,
         });
-        company.addMenu(newMenu);
+        await company.addMenu(newMenu);
         res.send(newMenu);
     }
 );
