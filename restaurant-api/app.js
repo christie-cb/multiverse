@@ -11,13 +11,6 @@ app.use(express.json());
 
 setupDb();
 
-//At minimum, your API should have the following endpoints
-//● Get all the companies
-//● Get a specific company by its id
-//● Get all a company’s menus
-//● Create a new company
-//● Delete a company
-
 app.get("/companies", async (req, res) => {
     const companies = await Company.findAll();
     res.send(companies);
@@ -60,13 +53,6 @@ app.delete("/companies/:companyId", async (req, res) => {
     res.send(`Successfully destroyed company ${companyId}`);
 });
 
-// Extension Assignments
-//● Get a specific menu by its id
-//● Replace a specific company
-//● Create a new menu
-//● Delete a menu
-//● Create a new location
-
 app.get("/menus", async (req, res) => {
     const menus = await Menu.findAll();
     res.send(menus);
@@ -104,6 +90,31 @@ app.delete("/menus/:menuId", async (req, res) => {
     await Menu.destroy({ where: { id: menuId } });
     res.send(`Successfully destroyed menu ${menuId}`);
 });
+
+const locationValidation = {
+    body: Joi.object({
+        name: Joi.string().required(),
+        manager: Joi.string().required(),
+        capacity: Joi.number().required(),
+    }),
+};
+
+app.post(
+    "/companies/:companyId/locations",
+    validate(locationValidation, {}, {}),
+    async (req, res) => {
+        const companyId = req.params.companyId;
+        const company = await Company.findByPk(companyId);
+        const newLocation = await Location.create({
+            name: req.body.name,
+            manager: req.body.manager,
+            capacity: req.body.capacity,
+            CompanyId: companyId,
+        });
+        company.addMenu(newLocation);
+        res.send(newLocation);
+    }
+);
 
 app.use(function (err, req, res, next) {
     if (err instanceof ValidationError) {
