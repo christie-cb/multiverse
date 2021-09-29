@@ -56,8 +56,9 @@ app.get("/", async (req, res) => {
 
 app.get("/companies/:id", async (req, res) => {
     const company = await Company.findOne({ where: { id: req.params.id } });
+    const locations = await Location.findAll({ where: { CompanyId: company.id } });
     const menus = await Menu.findAll({ where: { CompanyId: company.id } });
-    res.render("company", { company, menus });
+    res.render("company", { company, menus, locations });
 });
 
 module.exports = app;
