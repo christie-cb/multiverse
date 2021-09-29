@@ -12,33 +12,26 @@ beforeEach(async () => {
 });
 
 describe("POST request validation tests", () => {
-    test("unsuccessfully create company", function (done) {
-        const incorrectData = { key: "value", logoUrl: "https://blah.com" };
-        request(app)
+    test("unsuccessfully create company", async () => {
+        // Test for error when no name is supplied
+        const noNameData = { logoUrl: "https://blah.com" };
+        const noNameResponse = await request(app)
             .post("/companies")
-            .send(incorrectData)
-            .expect(400)
-            .then((response) => {
-                expect(response.error.text.includes("name")).toBeTruthy();
-                done();
-            })
-            .catch((err) => done(err));
-        const otherIncorrectData = { name: "value" };
-        request(app)
+            .send(noNameData)
+            .expect(400);
+        expect(noNameResponse.error.text.includes("name")).toBeTruthy();
+        // Test for error when no URL is supplied
+        const noUrlData = { name: "value" };
+        const noUrlResponse = await request(app)
             .post("/companies")
-            .send(otherIncorrectData)
-            .expect(400)
-            .then((response) => {
-                expect(response.error.text.includes("logoUrl")).toBeTruthy();
-                done();
-            })
-            .catch((err) => done(err));
-
+            .send(noUrlData)
+            .expect(400);
+        expect(noUrlResponse.error.text.includes("logoUrl")).toBeTruthy();
     });
 
     test("unsuccessfully create menu", async () => {
         const randomCompany = await Company.findOne();
-        const incorrectData = { key: "value" };
+        const incorrectData = { key: "value" }; // "title" must be supplied
         const response = await request(app)
             .post(`/companies/${randomCompany.id}/menus`)
             .send(incorrectData)
