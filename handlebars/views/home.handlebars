@@ -21,6 +21,7 @@
     {{#grouped_each 3 companies}}
         <article class="column">
             {{#each this}}
+                <a href={{company_url id}}>
                 <div
                     style="padding: 0px 10px 0px 10px; background-color: var(--brandy-rose);"
                 >
@@ -29,6 +30,7 @@
                         style="padding-bottom: 15px; color: white; text-align:center;"
                     >{{name}}</h3>
                 </div>
+                </a>
             {{/each}}
         </article>
     {{/grouped_each}}
