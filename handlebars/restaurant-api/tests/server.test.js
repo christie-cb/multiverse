@@ -47,7 +47,7 @@ describe("GET requests", () => {
 
 describe("POST requests", () => {
     test("create new company", function (done) {
-        const sentData = { name: "test name" };
+        const sentData = { name: "test name", logoUrl: "https://1.com" };
         request(app)
             .post("/companies")
             .send(sentData)

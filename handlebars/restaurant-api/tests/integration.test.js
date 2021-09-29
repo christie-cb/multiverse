@@ -13,7 +13,7 @@ beforeEach(async () => {
 
 describe("POST request integration tests", () => {
     test("create company", async () => {
-        const sentData = { name: "test company" };
+        const sentData = { name: "test company", logoUrl: "https://.com" };
         const response = await request(app).post("/companies").send(sentData);
         const companyId = response.body.id;
         await Company.findOne({ where: { id: companyId } }).then((company) => {
