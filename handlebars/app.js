@@ -56,7 +56,9 @@ app.get("/", async (req, res) => {
 
 app.get("/companies/:id", async (req, res) => {
     const company = await Company.findOne({ where: { id: req.params.id } });
-    const locations = await Location.findAll({ where: { CompanyId: company.id } });
+    const locations = await Location.findAll({
+        where: { CompanyId: company.id },
+    });
     const menus = await Menu.findAll({ where: { CompanyId: company.id } });
     res.render("company", { company, menus, locations });
 });
@@ -67,6 +69,14 @@ app.get("/about", async (req, res) => {
 
 app.get("/form", async (req, res) => {
     res.render("form", {});
+});
+
+app.post("/companies", async (req, res) => {
+    const newCompany = await Company.create({
+        name: req.body.name,
+        logoUrl: req.body.logoUrl,
+    });
+    res.send(newCompany);
 });
 
 module.exports = app;
