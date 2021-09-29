@@ -20,7 +20,7 @@ app.get("/companies/:companyId", async (req, res) => {
     const companyId = req.params.companyId;
     const company = await Company.findAll({ where: { id: companyId } });
     if (!company || company.length === 0) {
-        return res.sendStatus(404)
+        return res.sendStatus(404);
     }
     res.send(company);
 });
@@ -50,10 +50,14 @@ app.post(
     }
 );
 
-app.delete("/companies/:companyId", async (req, res) => {
+app.delete("/companies/:companyId", (req, res) => {
     const companyId = req.params.companyId;
-    await Company.destroy({ where: { id: companyId } });
-    res.send(`Successfully destroyed company ${companyId}`);
+    Company.destroy({ where: { id: companyId } }).then((count) => {
+        if (!count) {
+            return res.status(404).send({ error: `No company ${companyId}` });
+        }
+        res.sendStatus(204);
+    });
 });
 
 app.get("/menus", async (req, res) => {
