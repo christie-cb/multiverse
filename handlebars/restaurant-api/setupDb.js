@@ -11,7 +11,7 @@ async function setupDb(test = false) {
     Location.belongsTo(Company, { foreignKey: "CompanyId" });
     Menu.belongsTo(Company, { foreignKey: "CompanyId" });
     if (test) {
-        await db.sync({ force: true, logging: false });
+        await db.sync({ force: true });
     } else {
         await db.sync();
     }
