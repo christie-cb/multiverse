@@ -1,0 +1,21 @@
+<!--home.handlebars-->
+<link rel="stylesheet" href="/css/home.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap"
+    rel="stylesheet"
+/>
+<h1>{{company.name}}</h1>
+<div style="display: flex; justify-content: center">
+    <h2 style="width: 80%; text-align: center">
+        Menus
+    </h2>
+</div>
+<div style="display: flex; flex-direction:column; align-content:start; align-items: center;">
+    {{#each menus}}
+    <div style="width:80%; align-items:start;">
+        <li>{{this.title}}</li>
+    <div>
+    {{/each}}
+</div>
