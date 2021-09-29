@@ -1,10 +1,10 @@
 const express = require("express");
-const setupDb = require("./restaurant-api/setupDb");
+const setupDb = require("../restaurant-api/setupDb");
 const { validate, ValidationError, Joi } = require("express-validation");
 
-const Company = require("./restaurant-api/models/company");
-const Location = require("./restaurant-api/models/location");
-const Menu = require("./restaurant-api/models/menu");
+const Company = require("../restaurant-api/models/company");
+const Location = require("../restaurant-api/models/location");
+const Menu = require("../restaurant-api/models/menu");
 
 const path = require("path");
 const Handlebars = require("handlebars");
