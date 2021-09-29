@@ -61,4 +61,12 @@ app.get("/companies/:id", async (req, res) => {
     res.render("company", { company, menus, locations });
 });
 
+app.get("/about", async (req, res) => {
+    res.render("about", {});
+});
+
+app.get("/form", async (req, res) => {
+    res.render("form", {});
+});
+
 module.exports = app;
