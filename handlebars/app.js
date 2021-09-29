@@ -21,9 +21,6 @@ app.use(express.urlencoded({ extended: true }));
 setupDb();
 
 // setup our templating engine
-//const handlebars = expressHandlebars({
-//    handlebars: allowInsecurePrototypeAccess(Handlebars),
-//});
 
 const handlebars = expressHandlebars.create({
     handlebars: allowInsecurePrototypeAccess(Handlebars),
@@ -47,26 +44,7 @@ const handlebars = expressHandlebars.create({
     },
 });
 app.engine('handlebars', handlebars.engine);
-
-//app.engine("handlebars", handlebars);
 app.set("view engine", "handlebars");
-
-//Handlebars.registerHelper("grouped_each", function (every, context, options) {
-//    var out = "",
-//        subcontext = [],
-//        i;
-//    if (context && context.length > 0) {
-//        for (i = 0; i < context.length; i++) {
-//            if (i > 0 && i % every === 0) {
-//                out += options.fn(subcontext);
-//                subcontext = [];
-//            }
-//            subcontext.push(context[i]);
-//        }
-//        out += options.fn(subcontext);
-//    }
-//    return out;
-//});
 
 app.get("/", async (req, res) => {
     const companies = await Company.findAll();
