@@ -68,8 +68,8 @@ app.get("/about", async (req, res) => {
     res.render("about", {});
 });
 
-app.get("/form", async (req, res) => {
-    res.render("form", {});
+app.get("/company_form", async (req, res) => {
+    res.render("company_form", {});
 });
 
 const companyValidation = {
@@ -82,12 +82,31 @@ const companyValidation = {
 app.post("/companies", async (req, res) => {
     const { name, logoUrl } = req.body;
     if (!name || !logoUrl) {
-        return res.render("form", {
+        return res.render("company_form", {
             error: "Name and URL are required fields.",
         });
     }
-    await Company.create({ name, logoUrl });
-    res.render("form", { title: "Successfully submitted company."});
+    const company = await Company.create({ name, logoUrl });
+    res.render("company_form", {
+        title: `Successfully submitted company ${company.id}.`,
+    });
+});
+
+app.post("/menus", async (req, res) => {
+    const { company_id, title } = req.body;
+    if (!title || !company_id) {
+        return res.render("company_form", {
+            error: "Company ID and Title are required fields.",
+        });
+    }
+    const company = await Company.findByPk(company_id);
+    if (company instanceof Company) {
+        const menu = await Menu.create({ title, CompanyId: company_id });
+        return res.render("company_form", {
+            title: `Successfully submitted menu ${menu.id}.`,
+        });
+    }
+    res.render("company_form", {error: `Company ${company_id} not found.`});
 });
 
 app.use(function (err, req, res, next) {
