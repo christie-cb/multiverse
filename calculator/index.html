@@ -1,25 +1,18 @@
 <html>
-    <head> </head>
-    <body
-        style="
-            display: flex;
-            align-items: center;
-            background-color: #e3b9b6;
-            flex-flow: row wrap;
-        "
-    >
-        <form
-            style="
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                font-size: x-large;
-            "
-            id="calculate_sum"
-        >
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="index.css" />
+    </head>
+    <body>
+        <form id="calculate_sum">
             <label for="first_input">Enter a Number: </label>
             <input type="number" name="first_input" id="first_input" required />
-            <select id="operator" style="font-size: x-large;">
+            <select id="operator" style="font-size: x-large">
                 <option value="sum" id="sum">+</option>
                 <option value="divide" id="divide">&#247;</option>
                 <option value="multiply" id="multiply">x</option>
@@ -50,16 +43,19 @@
     </body>
     <script>
         function logSubmit(event) {
-            
-            const firstInput = parseInt(document.getElementById('first_input').value);
-            const secondInput = parseInt(document.getElementById('second_input').value);
-            const operation = document.getElementById('operator').value;
+            const firstInput = parseInt(
+                document.getElementById("first_input").value
+            );
+            const secondInput = parseInt(
+                document.getElementById("second_input").value
+            );
+            const operation = document.getElementById("operator").value;
             let output = 0;
             if (operation === "sum") {
                 output = firstInput + secondInput;
             } else if (operation === "multiply") {
                 output = firstInput * secondInput;
-            } else if (operation === "divide"){
+            } else if (operation === "divide") {
                 output = firstInput / secondInput;
             }
             log.textContent = `Form Submitted! : ${output}`;

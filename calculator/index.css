@@ -1,0 +1,49 @@
+body {
+    font-family: "Playfair Display", serif;
+    display: flex;
+    align-items: center;
+    background-color: #e3b9b6;
+    flex-flow: row wrap;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: x-large;
+}
+
+input {
+    margin: 15px;
+    font-family: "Playfair Display", serif;
+    border-radius: 15px;
+    border-color: #bcacac;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+}
+
+select {
+    margin: 15px;
+    font-family: "Playfair Display", serif;
+    background-color: #bcacac;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+button {
+    font-family: "Playfair Display", serif;
+    background-color: #bcacac;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
