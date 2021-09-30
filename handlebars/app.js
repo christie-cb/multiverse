@@ -109,6 +109,28 @@ app.post("/menus", async (req, res) => {
     res.render("form", { menu_error: `Company ${company_id} not found.` });
 });
 
+app.post("/locations", async (req, res) => {
+    const { company_id, name, capacity, manager } = req.body;
+    if ([company_id, name, capacity, manager].some((item) => !item)) {
+        return res.render("form", {
+            location_error: "All fields are required.",
+        });
+    }
+    const company = await Company.findByPk(company_id);
+    if (company instanceof Company) {
+        const loc = await Location.create({
+            name,
+            capacity,
+            manager,
+            CompanyId: company_id,
+        });
+        return res.render("form", {
+            title: `Successfully submitted menu ${loc.id}.`,
+        });
+    }
+    res.render("form", { location_error: `Company ${company_id} not found.` });
+});
+
 app.use(function (err, req, res, next) {
     if (err instanceof ValidationError) {
         return res.status(err.statusCode).json(err);
