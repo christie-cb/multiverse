@@ -6,6 +6,7 @@
         $(document).ready(function () { $(function () {
         $("#navigation").load("navbar.html");
         $("#company_form").load("company_form.html");
+        $("#location_form").load("location_form.html");
         $("#menu_form").load("menu_form.html"); }); });
     </script>
     <link rel="stylesheet" href="/css/home.css" />
@@ -28,4 +29,9 @@
         {{this.menu_error}}
     </p>
     <div id="menu_form"></div>
+    <h1 style="text-align:left">Submit a location</h1>
+    <p style="color: red; background-color: white;">
+        {{this.location_error}}
+    </p>
+    <div id="location_form"></div>
 </body>
