@@ -19,7 +19,11 @@
         >
             <label for="first_input">Enter a Number: </label>
             <input type="number" name="first_input" id="first_input" required />
-            <strong>+</strong>
+            <select id="operator" style="font-size: x-large;">
+                <option value="sum" id="sum">+</option>
+                <option value="divide" id="divide">&#247;</option>
+                <option value="multiply" id="multiply">x</option>
+            </select>
             <label for="second_input">Another Number: </label>
             <input
                 type="number"
@@ -46,10 +50,19 @@
     </body>
     <script>
         function logSubmit(event) {
-            const firstInput = document.getElementById('first_input').value;
-            const secondInput = document.getElementById('second_input').value;
-            const numberSum = parseInt(firstInput) + parseInt(secondInput);
-            log.textContent = `Form Submitted! : ${numberSum}`;
+            
+            const firstInput = parseInt(document.getElementById('first_input').value);
+            const secondInput = parseInt(document.getElementById('second_input').value);
+            const operation = document.getElementById('operator').value;
+            let output = 0;
+            if (operation === "sum") {
+                output = firstInput + secondInput;
+            } else if (operation === "multiply") {
+                output = firstInput * secondInput;
+            } else if (operation === "divide"){
+                output = firstInput / secondInput;
+            }
+            log.textContent = `Form Submitted! : ${output}`;
             event.preventDefault();
         }
 
