@@ -57,6 +57,9 @@ app.get("/", async (req, res) => {
 
 app.get("/companies/:id", async (req, res) => {
     const company = await Company.findOne({ where: { id: req.params.id } });
+    if (!company) {
+        return res.sendStatus(404);
+    }
     const locations = await Location.findAll({
         where: { CompanyId: company.id },
     });
