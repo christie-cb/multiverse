@@ -4,7 +4,6 @@
     ></script>
     <script>
         $(document).ready(function () { $(function () {
-        $("#navigation").load("navbar.html");
         $("#company_form").load("company_form.html");
         $("#location_form").load("location_form.html");
         $("#menu_form").load("menu_form.html"); }); });
@@ -18,7 +17,6 @@
     />
 </head>
 <body>
-    <div style="padding-top: 2px;" id="navigation"></div>
     <h1 style="text-align:left">Submit a new copmany</h1>
     <p style="color: red; background-color: white;">
         {{this.company_error}}
