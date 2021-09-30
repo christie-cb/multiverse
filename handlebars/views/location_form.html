@@ -1,0 +1,22 @@
+<head>
+    <link rel="stylesheet" href="/css/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap"
+        rel="stylesheet"
+    />
+</head>
+<body>
+    <form id="submit_location" action="/locations" method="POST">
+        <label for="company_id">Company ID</label>
+        <input name="company_id" id="company_id" required />
+        <label for="name">Location Name</label>
+        <input name="name" id="name" required />
+        <label for="capacity">Capacity</label>
+        <input name="capacity" id="capacity" />
+        <label for="manager">Manager</label>
+        <input name="manager" id="manager"/>
+        <button type="submit">Submit</button>
+    </form>
+</body>
