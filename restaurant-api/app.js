@@ -124,7 +124,7 @@ app.post(
             capacity: req.body.capacity,
             CompanyId: companyId,
         });
-        company.addMenu(newLocation);
+        await company.addMenu(newLocation);
         res.send(newLocation);
     }
 );
