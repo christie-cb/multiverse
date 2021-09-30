@@ -1,0 +1,60 @@
+<html>
+    <head> </head>
+    <body
+        style="
+            display: flex;
+            align-items: center;
+            background-color: #e3b9b6;
+            flex-flow: row wrap;
+        "
+    >
+        <form
+            style="
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                font-size: x-large;
+            "
+            id="calculate_sum"
+        >
+            <label for="first_input">Enter a Number: </label>
+            <input type="number" name="first_input" id="first_input" required />
+            <strong>+</strong>
+            <label for="second_input">Another Number: </label>
+            <input
+                type="number"
+                name="second_input"
+                id="second_input"
+                required
+            />
+            <button class="form-button" type="submit">
+                Crunch the numbers
+            </button>
+        </form>
+        <div
+            style="
+                display: flex;
+                justify-content: center;
+                border-style: solid;
+                border-color: white;
+                width: 100%;
+                display: flex;
+            "
+        >
+            <p id="log"></p>
+        </div>
+    </body>
+    <script>
+        function logSubmit(event) {
+            const firstInput = document.getElementById('first_input').value;
+            const secondInput = document.getElementById('second_input').value;
+            const numberSum = parseInt(firstInput) + parseInt(secondInput);
+            log.textContent = `Form Submitted! : ${numberSum}`;
+            event.preventDefault();
+        }
+
+        // run this function when the document is loaded
+        const form = document.getElementById("calculate_sum");
+        form.addEventListener("submit", logSubmit);
+    </script>
+</html>
