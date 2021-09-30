@@ -4,9 +4,9 @@
     ></script>
     <script>
         $(document).ready(function () { $(function () {
-            $("#navigation").load("navbar.html"); 
-            $("#company_form").load("company_form.html"); }); 
-        });
+        $("#navigation").load("navbar.html");
+        $("#company_form").load("company_form.html");
+        $("#menu_form").load("menu_form.html"); }); });
     </script>
     <link rel="stylesheet" href="/css/home.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,9 +18,14 @@
 </head>
 <body>
     <div style="padding-top: 2px;" id="navigation"></div>
-    <h1>Submit a new copmany</h1>
+    <h1 style="text-align:left">Submit a new copmany</h1>
     <p style="color: red; background-color: white;">
-        {{this.error}}
+        {{this.company_error}}
     </p>
     <div id="company_form"></div>
+    <h1 style="text-align:left">Submit a menu</h1>
+    <p style="color: red; background-color: white;">
+        {{this.menu_error}}
+    </p>
+    <div id="menu_form"></div>
 </body>
