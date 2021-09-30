@@ -15,3 +15,14 @@ input {
 label {
     padding-right: 10px;
 }
+
+.form-button {
+    font-family: "Azeret Mono", monospace;
+    background-color: var(--nobel);
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
