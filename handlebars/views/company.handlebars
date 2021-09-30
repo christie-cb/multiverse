@@ -7,16 +7,14 @@
 />
 <div style="display: block" id="navigation"></div>
 <h1>{{company.name}}</h1>
-<div style="display:inline-block; float: right; width: 50%;">
-    <span><img style="padding-right:10px; max-width: 100vh" src={{company.logoUrl}} /></span>
+<div style="display: inline-block; float: right; width: 50%; overflow: hidden;">
+    <img style="float: right; max-width: 384px;" src={{company.logoUrl}} />
 </div>
-<div style="display:inline-block; width: 45%;">
+<div style="display:inline-block; width: 50%;">
     <h2>Menus</h2>
-    <div
-        style="display: flex; flex-direction:column; align-content:start; align-items: center;"
-    >
+    <div>
         {{#each menus}}
-            <div style="width:80%; align-items:start;">
+            <div style="width:100%; align-items:start;">
                 <li>{{this.title}}</li>
             </div>
         {{/each}}
