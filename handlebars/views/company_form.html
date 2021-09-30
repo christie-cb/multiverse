@@ -6,13 +6,39 @@
         href="https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap"
         rel="stylesheet"
     />
+    <style>
+        form.column-form {
+            display: table;
+        }
+
+        div.column-form {
+            display: table-row;
+        }
+
+        label,
+        input {
+            display: table-cell;
+            margin-bottom: 10px;
+        }
+
+        label {
+            padding-right: 10px;
+        }
+    </style>
 </head>
 <body>
-    <form id="submit_company" action="/companies" method="POST">
-        <label for="name">Name</label>
-        <input name="name" id="name" required />
-        <label for="logoUrl">Logo URL</label>
-        <input name="logoUrl" id="submit" />
-        <button type="submit">Submit</button>
+    <form
+        class="column-form"
+        id="submit_company"
+        action="/companies"
+        method="POST"
+    >
+        <div class="column-form">
+            <label for="name">Name</label>
+            <input name="name" id="name" required />
+            <label for="logoUrl">Logo URL</label>
+            <input name="logoUrl" id="submit" />
+            <button type="submit">Submit</button>
+        </div>
     </form>
 </body>
