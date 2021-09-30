@@ -7,30 +7,34 @@
     rel="stylesheet"
 />
 <h1>{{company.name}}</h1>
+<div style="display:inline-block; float: right; width: 50%;">
 <span><img class="grid-image" src={{company.logoUrl}} /></span>
-<h2>Menus</h2>
-<div
-    style="display: flex; flex-direction:column; align-content:start; align-items: center;"
->
-    {{#each menus}}
-        <div style="width:80%; align-items:start;">
-            <li>{{this.title}}</li>
-        </div>
-    {{/each}}
-
 </div>
+<div style="display:inline-block; width: 45%;">
+    <h2>Menus</h2>
+    <div
+        style="display: flex; flex-direction:column; align-content:start; align-items: center;"
+    >
+        {{#each menus}}
+            <div style="width:80%; align-items:start;">
+                <li>{{this.title}}</li>
+            </div>
+        {{/each}}
 
-<h2>Locations</h2>
-<div
-    style="display: flex; flex-direction:column; align-content:start; align-items: center;"
->
-    {{#each locations}}
-        <div style="width:80%; align-items:start;">
-            <li>{{this.name}}</li>
-            <br />
-            <em>Capacity: {{this.capacity}}</em>
-            <br />
-            <em>Manager: {{this.manager}}</em>
-        </div>
-    {{/each}}
+    </div>
+
+    <h2>Locations</h2>
+    <div
+        style="display: flex; flex-direction:column; align-content:start; align-items: center;"
+    >
+        {{#each locations}}
+            <div style="width:80%; align-items:start;">
+                <li>{{this.name}}</li>
+                <br />
+                <em>Capacity: {{this.capacity}}</em>
+                <br />
+                <em>Manager: {{this.manager}}</em>
+            </div>
+        {{/each}}
+    </div>
 </div>
