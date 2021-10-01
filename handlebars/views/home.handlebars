@@ -15,7 +15,9 @@
     <script>
         async function deleteCompany(companyId) {
             console.log(`DELETING ${companyId}`);
-            await sendDeleteRequest(companyId)
+            sendDeleteRequest(companyId).then(() => {
+                window.location.reload(false);
+            });
         }
     </script>
 </head>
