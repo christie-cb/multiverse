@@ -69,7 +69,8 @@ app.get("/companies/:id", async (req, res) => {
 
 app.delete("/companies/:id", async (req, res) => {
     await Company.destroy({ where: { id: req.params.id } });
-    res.redirect("/");
+    const companies = await Company.findAll();
+    res.render("home", { companies });
 });
 
 app.get("/about", async (req, res) => {
