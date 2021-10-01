@@ -10,6 +10,14 @@
         href="https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap"
         rel="stylesheet"
     />
+    <!-- Importing JS for delete -->
+    <script src="delete.js"></script>
+    <script>
+        async function deleteCompany(companyId) {
+            console.log(`DELETING ${companyId}`);
+            await sendDeleteRequest(companyId)
+        }
+    </script>
 </head>
 <body>
     <h1>Visual Merchandising</h1>
@@ -28,7 +36,8 @@
         {{#grouped_each 3 companies}}
             <article class="column">
                 {{#each this}}
-                    <a href={{company_url id}}>
+                   <button onclick="deleteCompany({{id}})">Click me</button>
+                   <a href={{company_url id}}>
                         <div
                             style="padding: 0px 10px 0px 10px; background-color: var(--brandy-rose);"
                         >
@@ -46,3 +55,4 @@
         {{/grouped_each}}
     </div>
 </body>
+
