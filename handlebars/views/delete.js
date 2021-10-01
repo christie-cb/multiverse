@@ -1,7 +1,8 @@
 async function sendDeleteRequest(companyId) {
-    return await fetch(`/companies/${companyId}`, {
+    const response = await fetch(`/companies/${companyId}`, {
         method: "DELETE",
     });
+    return response;
 }
 
 module.exports = { deleteCompany };
