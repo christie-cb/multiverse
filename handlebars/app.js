@@ -73,6 +73,21 @@ app.delete("/companies/:id", async (req, res) => {
     res.render("home", { companies });
 });
 
+app.delete("/companies/:id/locations/:locationId", async (req, res) => {
+    await Location.destroy({ where: { id: req.params.locationId } });
+    const company = await Company.findOne({ where: { id: req.params.id } });
+    if (!company) {
+        console.log("No company found.");
+        return res.sendStatus(404);
+    }
+    const locations = await Location.findAll({
+        where: { CompanyId: company.id },
+    });
+    const menus = await Menu.findAll({ where: { CompanyId: company.id } });
+    
+    res.render("company", { company, menus, locations });
+});
+
 app.get("/about", async (req, res) => {
     res.render("about", {});
 });

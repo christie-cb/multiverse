@@ -1,3 +1,4 @@
+<head>
 <link rel="stylesheet" href="/css/home.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -5,7 +6,18 @@
     href="https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap"
     rel="stylesheet"
 />
-<div style="display: block" id="navigation"></div>
+
+<!-- Importing JS for delete -->
+<script src="/delete_location.js"></script>
+<script>
+    async function deleteLocation(companyId, locationId) { 
+        console.log(`DELETING ${companyId}, ${locationId}`); 
+        sendLocationDeleteRequest(companyId, locationId).then(() => { window.location.reload(false); 
+        }); 
+    }
+</script>
+</head>
+<body>
 <h1>{{company.name}}</h1>
 <div style="display:inline-block; float: right; width: 50%;">
     <span><img class="grid-image" src={{company.logoUrl}} /></span>
@@ -17,7 +29,7 @@
     >
         {{#each menus}}
             <div style="width:80%; align-items:start;">
-                <li>{{this.title}}</li>
+                <li style="margin-bottom: 10px;">{{this.title}}</li>
             </div>
         {{/each}}
 
@@ -28,7 +40,11 @@
         style="display: flex; flex-direction:column; align-content:start; align-items: center;"
     >
         {{#each locations}}
-            <div style="width:80%; align-items:start;">
+            <button
+                class="delete-button"
+                onclick="deleteLocation({{this.CompanyId}}, {{this.id}})"
+            ></button>
+            <div style="margin-bottom:15px; width:80%; align-items:start;">
                 <li>{{this.name}}</li>
                 <br />
                 <em>Capacity: {{this.capacity}}</em>
@@ -38,3 +54,4 @@
         {{/each}}
     </div>
 </div>
+</body>
