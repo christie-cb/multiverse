@@ -67,6 +67,11 @@ app.get("/companies/:id", async (req, res) => {
     res.render("company", { company, menus, locations });
 });
 
+app.delete("/companies/:id", async (req, res) => {
+    await Company.destroy({ where: { id: req.params.id } });
+    res.redirect("/");
+});
+
 app.get("/about", async (req, res) => {
     res.render("about", {});
 });
