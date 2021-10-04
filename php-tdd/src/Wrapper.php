@@ -1,7 +1,16 @@
 <?php
 
 class Wrapper {
-    public function wrap($text) {
-        return $text;
+    public function wrap($text, $maxLineLength) {
+        if (strlen($text) <= $maxLineLength) {
+            return $text;
+        }
+        $output = "";
+        $i = 0;
+        while ($i < strlen($text)) {
+            $output = $output . substr($text, $i, $maxLineLength) . "\n";
+            $i += $maxLineLength;
+        }
+        return substr($output, 0, -1); // drop the trailing \n
     }
 }
