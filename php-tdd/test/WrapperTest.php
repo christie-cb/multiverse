@@ -6,4 +6,9 @@ final class WrapperTest extends TestCase {
     function testCanCreateAWrapper() {
         $wrapper = new Wrapper();
     }
+
+    function testDoesNotWrapAWordShorterThanMaxChar() {
+        $wrapper = new Wrapper();
+        assertEquals('word', $wrapper->wrap('word', 5));
+    }
 }
