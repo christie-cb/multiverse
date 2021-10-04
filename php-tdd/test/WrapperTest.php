@@ -16,13 +16,20 @@ final class WrapperTest extends TestCase {
     }
 
     function testWrapsEmptyString() {
-        $this -> assertEquals('', $this->wrapper->wrap(''));
+        $this -> assertEquals('', $this->wrapper->wrap('', 0));
+        $this -> assertEquals('', $this->wrapper->wrap('', 1));
     }
     
     function testWrapsLongWord() {
         $text = 'ALongWord';
         $maxLineLength = 5;
-        $this -> assertEquals($text, $this->wrapper->wrap("ALong\nWord", $maxLineLength));
+        $this -> assertEquals("ALong\nWord", $this->wrapper->wrap($text, $maxLineLength));
+    }
+
+    function testWrapsLongSentence() {
+        $text = 'A Long One';
+        $maxLineLength = 2;
+        $this -> assertEquals("A \nLo\nng\n O\nne", $this->wrapper->wrap($text, $maxLineLength));
     }
 }
 
