@@ -5,6 +5,6 @@ require_once dirname(__FILE__) . '/../src/Wrapper.php';
 final class WrapperTest extends TestCase {
     function testDoesNotWrapAWordShorterThanMaxChar() {
         $wrapper = new Wrapper();
-        assertEquals('word', $wrapper->wrap('word', 5));
+        $this -> assertEquals('word', $wrapper->wrap('word', 5));
     }
 }
