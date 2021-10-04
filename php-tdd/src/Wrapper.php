@@ -2,9 +2,6 @@
 
 class Wrapper {
     public function wrap($text, $maxLineLength) {
-        if (strlen($text) <= $maxLineLength) {
-            return $text;
-        }
         $output = "";
         $i = 0;
         while ($i < strlen($text)) {
